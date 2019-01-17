@@ -22,7 +22,15 @@ import frc.robot.subsystems.ExampleSubsystem;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
+
+ 
+
 public class Robot extends TimedRobot {
+
+  public static ExampleSubsystem exs = new ExampleSubsystem();
+
+
+  
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
 
@@ -60,6 +68,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    exs.stop();
   }
 
   @Override
@@ -109,6 +118,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    System.out.println("Hi Jimmy");
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }

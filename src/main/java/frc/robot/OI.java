@@ -7,12 +7,33 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.ExampleClose;
+import frc.robot.commands.ExampleCommand;
+
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
+
 public class OI {
-  //// CREATING BUTTONS
+Joystick joyS = RobotMap.leftJoy;
+
+public OI(){
+ Button motorTest = new JoystickButton(joyS, 1),
+        motorStop = new JoystickButton(joyS, 2);
+
+motorTest.whenActive(new ExampleCommand());
+motorStop.whenPressed(new ExampleClose());
+
+//motorStop.close();
+//motorTest.close();
+}
+
+  //// CREATING BUTTON;S
   // One type of button is a joystick button which is any button on a
   //// joystick.
   // You create one by telling it which joystick it's on and which button
