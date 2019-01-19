@@ -7,33 +7,41 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
-public class ExampleClose extends Command {
-  public ExampleClose() {
+public class EncoderTest extends Command {
+  private Encoder enc = RobotMap.enc;
+  public EncoderTest() {
+   
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.exs);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.exs.stop();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.exs.stop();
-    Robot.lift.stop();
+    //Since the count can be translated into revolutions this stops the motors after one revolution
+    int count = enc.get();
+    System.out.println(count);
+    //255 counts equals one full revolution
+    //If you find the ratio of count/max_count then multiply that by wheel_circumference you can find distance travelled
+    if (count >= 255 || count <= -255){
+      Robot.exs.reset();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

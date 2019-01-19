@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ExampleClose;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.LiftUp;
+import frc.robot.commands.EncoderTest;
 
 
 /**
@@ -21,16 +23,21 @@ import frc.robot.commands.ExampleCommand;
 
 public class OI {
 Joystick joyS = RobotMap.leftJoy;
+ExampleCommand exc = new ExampleCommand();
 
 public OI(){
+  //Buttons on the joystick
  Button motorTest = new JoystickButton(joyS, 1),
-        motorStop = new JoystickButton(joyS, 2);
+        motorStop = new JoystickButton(joyS, 2),
+        buttonLift = new JoystickButton(joyS, 3);
 
-motorTest.whenActive(new ExampleCommand());
+        //What happens when certain buttons are pressed
+        //Each button relates to a command
+motorTest.whenReleased(new EncoderTest());
+buttonLift.whenPressed(new LiftUp());
+motorTest.whenPressed(new ExampleCommand());
 motorStop.whenPressed(new ExampleClose());
 
-//motorStop.close();
-//motorTest.close();
 }
 
   //// CREATING BUTTON;S

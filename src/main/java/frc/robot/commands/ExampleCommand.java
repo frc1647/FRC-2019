@@ -11,6 +11,7 @@ import javax.swing.plaf.TreeUI;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -31,7 +32,7 @@ public class ExampleCommand extends Command {
   @Override
   public void execute() {
     Robot.exs.setSpeed(0.25);
-    
+    Robot.exs.getCount();  
   }
   
 

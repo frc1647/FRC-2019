@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Lift;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,11 +28,9 @@ import frc.robot.subsystems.ExampleSubsystem;
 
 public class Robot extends TimedRobot {
 
+  //Creating instances of each subsystem so they can be used throughout the robot project
   public static ExampleSubsystem exs = new ExampleSubsystem();
-
-
-  
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
+  public static Lift lift = new Lift();
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -68,7 +67,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
-    exs.stop();
+    //Resets all areas of the robot when disabled
+    exs.reset();
+    lift.stop();
   }
 
   @Override
@@ -90,6 +91,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
+    teleopInit();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -118,7 +120,6 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    System.out.println("Hi Jimmy");
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }

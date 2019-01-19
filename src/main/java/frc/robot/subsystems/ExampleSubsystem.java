@@ -12,7 +12,9 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import frc.robot.RobotMap;
 
 /**
@@ -22,23 +24,35 @@ public class ExampleSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private WPI_TalonSRX tMotor8 = RobotMap.t8;
-  private WPI_VictorSPX vMotor0 = RobotMap.v0;
-  private WPI_VictorSPX vMotor1 = RobotMap.v1;
-  
+  private WPI_TalonSRX tMotor9 = RobotMap.t9;
+
+
+  private Encoder enc = RobotMap.enc;
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    
   }
   public void setSpeed(double x){
-tMotor8.set(x);
-vMotor0.set(x);
-vMotor1.set(x);
+tMotor8.set(x); 
+tMotor9.set(x);
 
   }
   public void stop(){
     tMotor8.stopMotor();
-    vMotor0.stopMotor();
-    vMotor1.stopMotor();
+    tMotor9.stopMotor();
   }
+  public void reset(){
+    tMotor8.set(0);
+    tMotor9.set(0);
+
+    enc.reset();
+  }
+public void getCount(){
+enc.get();
+
+}
+
 }
