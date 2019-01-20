@@ -19,20 +19,20 @@ import frc.robot.RobotMap;
 public class ExampleCommand extends Command {
   public ExampleCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.exs);
+    requires(Robot.m_exs);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.exs.setSpeed(0);
+    Robot.m_exs.setSpeed(0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    Robot.exs.setSpeed(0.25);
-    Robot.exs.getCount();  
+    Robot.m_exs.setSpeed(0.25);
+    Robot.m_exs.getCount();  
   }
   
 

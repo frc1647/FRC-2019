@@ -14,20 +14,20 @@ public class ExampleClose extends Command {
   public ExampleClose() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.exs);
+    requires(Robot.m_exs);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.exs.stop();
+    Robot.m_exs.stop();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.exs.stop();
-    Robot.lift.stop();
+    Robot.m_exs.stop();
+    Robot.m_lift.stop();
   }
 
   // Make this return true when this Command no longer needs to run execute()

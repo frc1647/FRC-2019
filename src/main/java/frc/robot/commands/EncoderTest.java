@@ -34,7 +34,7 @@ public class EncoderTest extends Command {
     //255 counts equals one full revolution
     //If you find the ratio of count/max_count then multiply that by wheel_circumference you can find distance travelled
     if (count >= 255 || count <= -255){
-      Robot.exs.reset();
+      Robot.m_exs.reset();
     }
   }
 

@@ -12,8 +12,9 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ExampleClose;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.LiftUp;
-import frc.robot.commands.EncoderTest;
+import frc.robot.commands.LiftManual;
+import frc.robot.commands.LiftManual;;
+//import frc.robot.commands.EncoderTest;
 
 
 /**
@@ -32,15 +33,19 @@ public OI(){
         buttonLift = new JoystickButton(joyS, 3);
 
         //What happens when certain buttons are pressed
-        //Each button relates to a command
-motorTest.whenReleased(new EncoderTest());
-buttonLift.whenPressed(new LiftUp());
+        //Each button relates to a single command
+//motorTest.whenReleased(new EncoderTest());
+buttonLift.whenPressed(new LiftManual());
 motorTest.whenPressed(new ExampleCommand());
 motorStop.whenPressed(new ExampleClose());
 
+
 }
 
-  //// CREATING BUTTON;S
+public Joystick getJoystick(){
+  return joyS;
+}
+  //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
   // You create one by telling it which joystick it's on and which button

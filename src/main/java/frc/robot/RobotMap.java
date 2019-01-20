@@ -7,13 +7,12 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 /**
@@ -29,7 +28,7 @@ public class RobotMap {
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
 
-//public static WPI_VictorSPX x = new WPI_VictorSPX(0);
+//Test talons on the testbench
 public static WPI_TalonSRX t8 = new WPI_TalonSRX(8);
 public static WPI_TalonSRX t9 = new WPI_TalonSRX(9);
 
@@ -41,6 +40,12 @@ public static Joystick leftJoy = new Joystick(1);
 
 //The encoder has a count of 255 per revolution
 public static Encoder enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+
+//Declaring limit switch for lift and Hall Effect sensor for arms
+//The limit switch makes sure the lift doesn't go too high and break the robot
+//The hall Effect sensor would stop the arms at certain points
+public static DigitalInput limitSwitch = new DigitalInput(0);
+public static DigitalInput hallEffect = new DigitalInput(1);
 
   // If you are using multipe modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

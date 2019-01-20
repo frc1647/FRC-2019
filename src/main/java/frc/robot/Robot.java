@@ -29,8 +29,8 @@ import frc.robot.subsystems.Lift;
 public class Robot extends TimedRobot {
 
   //Creating instances of each subsystem so they can be used throughout the robot project
-  public static ExampleSubsystem exs = new ExampleSubsystem();
-  public static Lift lift = new Lift();
+  public static ExampleSubsystem m_exs;
+  public static Lift m_lift;
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -42,8 +42,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    //Initializes subsystem when the robot is intitilized
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    m_lift = new Lift();
+    m_exs = new ExampleSubsystem();
+
+    SmartDashboard.putNumber("Lift Count: ", m_lift.getCount());
+
+    //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
@@ -68,8 +74,8 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     //Resets all areas of the robot when disabled
-    exs.reset();
-    lift.stop();
+    m_exs.reset();
+    m_lift.stop();
   }
 
   @Override

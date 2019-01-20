@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LiftUp extends Command {
-  public LiftUp() {
+public class LiftManual extends Command {
+  public LiftManual() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -25,7 +25,7 @@ public class LiftUp extends Command {
   @Override
   protected void execute() {
     //Sets the speed of the lift motors
-    Robot.lift.setLiftSpeed(0.25);
+    Robot.m_lift.manualControl(0.25);
   }
 
   // Make this return true when this Command no longer needs to run execute()
