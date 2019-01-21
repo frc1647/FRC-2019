@@ -12,9 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.Arms;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,11 +33,14 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_exs;
   public static Lift m_lift;
   public static OI m_oi;
+  public static Arms m_arms;
+  public static Vision m_vision;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
+   * 
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
@@ -46,6 +50,8 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_lift = new Lift();
     m_exs = new ExampleSubsystem();
+    m_arms = new Arms();
+    m_vision = new Vision();
 
     SmartDashboard.putNumber("Lift Count: ", m_lift.getCount());
 

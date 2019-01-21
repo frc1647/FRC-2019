@@ -7,8 +7,7 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
-import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -21,7 +20,6 @@ import edu.wpi.first.wpilibj.Joystick;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 public class RobotMap {
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
@@ -36,9 +34,10 @@ public static WPI_TalonSRX t9 = new WPI_TalonSRX(9);
 public static WPI_VictorSPX v0 = new WPI_VictorSPX(0);
 public static WPI_VictorSPX v1 = new WPI_VictorSPX(1);
 
+//Joystick for controlling the robot
 public static Joystick leftJoy = new Joystick(1);
 
-//The encoder has a count of 255 per revolution
+//The encoder for the lift that has a count of 1024 per revolution
 public static Encoder enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 
 //Declaring limit switch for lift and Hall Effect sensor for arms

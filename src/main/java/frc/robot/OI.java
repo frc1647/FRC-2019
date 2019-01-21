@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ExampleClose;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.LiftManual;
-import frc.robot.commands.LiftManual;;
 //import frc.robot.commands.EncoderTest;
 
 
@@ -39,7 +38,9 @@ buttonLift.whenPressed(new LiftManual());
 motorTest.whenPressed(new ExampleCommand());
 motorStop.whenPressed(new ExampleClose());
 
-
+motorTest.close();
+motorStop.close();
+buttonLift.close();
 }
 
 public Joystick getJoystick(){
