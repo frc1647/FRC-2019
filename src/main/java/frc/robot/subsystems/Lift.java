@@ -83,6 +83,7 @@ private double kCircumference = 2*.5* Math.PI;;
     stop();
   }
   public void cargoMid(){
+
     while ((count/255 * kCircumference) < 55 || (count/255 * kCircumference) > -55){
       manualControl(.25);
     }
@@ -90,6 +91,12 @@ private double kCircumference = 2*.5* Math.PI;;
   }
   public void cargoHigh(){
     while ((count/255 * kCircumference) < 83 || (count/255 * kCircumference) > -83){
+      manualControl(.25);
+    }
+    stop();
+  }
+  public void cargoBay(){
+    while ((count/255 * kCircumference) < 32 || (count/255 * kCircumference) > -32){
       manualControl(.25);
     }
     stop();
