@@ -14,7 +14,7 @@ public class LiftHLow extends Command {
   public LiftHLow() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_lift);
+   // requires(Robot.m_lift);
   }
 
   // Called just before this Command runs the first time

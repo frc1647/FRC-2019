@@ -20,10 +20,10 @@ public class Lift extends Subsystem {
 private WPI_VictorSPX v1 = RobotMap.v1;
 private WPI_VictorSPX v2 = RobotMap.v0;
 private Encoder enc = RobotMap.enc;
-private DigitalInput limitSwitch = RobotMap.limitSwitch;
+//private DigitalInput limitSwitch = RobotMap.limitSwitch;
 //Declaring other variable that will be used
 private int count = enc.get();
-private double kCircumference = 2*.5* Math.PI;;
+private double kCircumference = 2*.5* Math.PI;
 
 //public Lift(){
 //v2.follow(v1);
@@ -44,12 +44,13 @@ private double kCircumference = 2*.5* Math.PI;;
     v2.set(speed);
   }
   public void stop(){
-    v1.stopMotor();
-    v2.stopMotor();
+    v1.set(0);
+    v2.set(0);
   }
   public int getCount(){
     return count;
   }
+  
   /*the methods below set the lift to set positions (those being the hatch heights on the rocket)
   All the math is in inches and 255 counts makes one full revolution
   The shaft diameter is about .5 inches making the circumference PI
@@ -59,45 +60,46 @@ private double kCircumference = 2*.5* Math.PI;;
   //Once the redline encoder comes in the 255 will need to be changed
   public void rocketLowHatch(){
     while ((count/255 * kCircumference) < 19 || (count/255 * kCircumference) > -19){
-      manualControl(0.25);
+      System.out.println(count/255 * kCircumference);
+      manualControl(0.05);
     }
     stop();
   }
   public void rocketMidHatch(){
     while ((count/255 * kCircumference) < 47 || (count/255 * kCircumference) > -47){
-      manualControl(.25);
+      manualControl(.05);
     }
     stop();
   }
   public void rocketHighHatch(){
     while ((count/255 * kCircumference) < 75 || (count/255 * kCircumference) > -75){
-      manualControl(0.25);
-      if (limitSwitch.get() == true){ stop(); }
-    }
-    stop();
+      manualControl(0.05);}
+    //  if (limitSwitch.get() == true){ stop(); }
+   // }
+   // stop();
   }
   public void cargoLow(){
     while ((count/255 * kCircumference) < 27 || (count/255 * kCircumference) > -27){
-      manualControl(.25);
+      manualControl(.05);
     }
     stop();
   }
   public void cargoMid(){
 
     while ((count/255 * kCircumference) < 55 || (count/255 * kCircumference) > -55){
-      manualControl(.25);
+      manualControl(.05);
     }
     stop();
   }
   public void cargoHigh(){
     while ((count/255 * kCircumference) < 83 || (count/255 * kCircumference) > -83){
-      manualControl(.25);
+      manualControl(.05);
     }
     stop();
   }
   public void cargoBay(){
     while ((count/255 * kCircumference) < 32 || (count/255 * kCircumference) > -32){
-      manualControl(.25);
+      manualControl(.05);
     }
     stop();
   }

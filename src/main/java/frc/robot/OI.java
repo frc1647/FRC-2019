@@ -10,10 +10,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.EncoderTest;
 import frc.robot.commands.ExampleClose;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.LiftHLow;
 import frc.robot.commands.LiftManual;
 //import frc.robot.commands.EncoderTest;
+import frc.robot.commands.LiftStop;
 
 
 /**
@@ -23,21 +26,27 @@ import frc.robot.commands.LiftManual;
 
 public class OI {
 Joystick joyS = RobotMap.leftJoy;
-ExampleCommand exc = new ExampleCommand();
 
 public OI(){
   //Buttons on the joystick
  Button motorTest = new JoystickButton(joyS, 1),
         motorStop = new JoystickButton(joyS, 2),
-        buttonLift = new JoystickButton(joyS, 3);
+        buttonLift = new JoystickButton(joyS, 3),
+        distanceTest = new JoystickButton(joyS, 5),
+        encoderTest = new JoystickButton(joyS, 7);
 
         //What happens when certain buttons are pressed
         //Each button relates to a single command
 //motorTest.whenReleased(new EncoderTest());
+distanceTest.whenPressed(new LiftHLow());
 buttonLift.whenPressed(new LiftManual());
 motorTest.whenPressed(new ExampleCommand());
 motorStop.whenPressed(new ExampleClose());
+encoderTest.whenActive(new EncoderTest());
+distanceTest.whenInactive(new LiftStop());
 
+encoderTest.close();
+distanceTest.close();
 motorTest.close();
 motorStop.close();
 buttonLift.close();

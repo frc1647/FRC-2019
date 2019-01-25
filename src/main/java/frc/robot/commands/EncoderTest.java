@@ -14,6 +14,9 @@ import frc.robot.RobotMap;
 
 public class EncoderTest extends Command {
   private Encoder enc = RobotMap.enc;
+
+  private double kCircumference = 2*.5* Math.PI;
+
   public EncoderTest() {
    
     // Use requires() here to declare subsystem dependencies
@@ -28,13 +31,16 @@ public class EncoderTest extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Since the count can be translated into revolutions this stops the motors after one revolution
+      
+     //Since the count can be translated into revolutions this stops the motors after one revolution
     int count = enc.get();
-    System.out.println(count);
+    double distance = count/255 * kCircumference;
+    //System.out.println(count);
     //255 counts equals one full revolution
     //If you find the ratio of count/max_count then multiply that by wheel_circumference you can find distance travelled
-    if (count >= 255 || count <= -255){
-      Robot.m_exs.reset();
+    if (count/255 * kCircumference <= 19 || count/255 * kCircumference <= -19 ){
+      System.out.println(count);
+      // Robot.m_exs.reset();
     }
   }
 

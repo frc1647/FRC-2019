@@ -43,8 +43,8 @@ public static Encoder enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 //Declaring limit switch for lift and Hall Effect sensor for arms
 //The limit switch makes sure the lift doesn't go too high and break the robot
 //The hall Effect sensor would stop the arms at certain points
-public static DigitalInput limitSwitch = new DigitalInput(0);
-public static DigitalInput hallEffect = new DigitalInput(1);
+//public static DigitalInput limitSwitch = new DigitalInput(0);
+//public static DigitalInput hallEffect = new DigitalInput(1);
 
   // If you are using multipe modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
