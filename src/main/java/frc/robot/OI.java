@@ -14,7 +14,6 @@ import frc.robot.commands.ExampleClose;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.LiftManual;
 import frc.robot.commands.LiftMove;
-import frc.robot.commands.LiftStop;
 import frc.robot.commands.ToggleLift;
 import frc.robot.subsystems.LiftEnum;
 
@@ -25,41 +24,54 @@ import frc.robot.subsystems.LiftEnum;
  */
 
 public class OI {
-Joystick joyS = RobotMap.leftJoy;
+Joystick tab;
+Joystick lDrive;
+Joystick rDrive;
 
 public OI(){
+  tab = RobotMap.tablet;
+  lDrive = RobotMap.driveLeft;
+  rDrive = RobotMap.driveRight;
+
   //Buttons on the joystick
- Button motorTest = new JoystickButton(joyS, 1),
-        motorStop = new JoystickButton(joyS, 2),
-        manualLift = new JoystickButton(joyS, 3),
-        liftLow = new JoystickButton(joyS, 4),
-        liftMid = new JoystickButton(joyS, 5),
-        liftHigh = new JoystickButton(joyS, 6),
-        toggleLift = new JoystickButton(joyS, 7);
+ Button motorTest = new JoystickButton(tab, 1),
+        motorStop = new JoystickButton(tab, 2),
+        manualLift = new JoystickButton(tab, 3),
+        liftLow = new JoystickButton(tab, 4),
+        liftMid = new JoystickButton(tab, 5),
+        liftHigh = new JoystickButton(tab, 6),
+        toggleLift = new JoystickButton(tab, 7);
 
 
 
-        //What happens when certain buttons are pressed
-        //Each button relates to a single command
-toggleLift.toggleWhenPressed(new ToggleLift());       
-manualLift.whenPressed(new LiftManual());
-motorTest.whenPressed(new ExampleCommand());
-motorStop.whenPressed(new ExampleClose());
-liftLow.whenPressed(new LiftMove(LiftEnum.LOW));
-liftMid.whenPressed(new LiftMove(LiftEnum.MID));
-liftHigh.whenPressed(new LiftMove(LiftEnum.HIGH));
+  //What happens when certain buttons are pressed
+  //Each button relates to a single command
+  toggleLift.toggleWhenPressed(new ToggleLift());       
+  manualLift.whenPressed(new LiftManual());
+  motorTest.whenPressed(new ExampleCommand());
+  motorStop.whenPressed(new ExampleClose());
+  liftLow.whenPressed(new LiftMove(LiftEnum.LOW));
+  liftMid.whenPressed(new LiftMove(LiftEnum.MID));
+  liftHigh.whenPressed(new LiftMove(LiftEnum.HIGH));
 
-toggleLift.close();
-motorTest.close();
-motorStop.close();
-manualLift.close();
-liftLow.close();
-liftMid.close();
-liftHigh.close();
+  toggleLift.close();
+  motorTest.close();
+  motorStop.close();
+  manualLift.close();
+  liftLow.close();
+  liftMid.close();
+  liftHigh.close();
 }
 
-public Joystick getJoystick(){
-  return joyS;
+//Gets joysticks so they can be used for controlling speeds in various commands
+public Joystick getTabletJoystick(){
+  return tab;
+}
+public Joystick getLeftJoystick(){
+  return tab;
+}
+public Joystick getRightJoystick(){
+  return tab;
 }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a

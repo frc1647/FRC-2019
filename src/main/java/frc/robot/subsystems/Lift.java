@@ -16,8 +16,8 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class Lift extends PIDSubsystem {
-private WPI_VictorSPX v1;// = RobotMap.v1;
-private WPI_VictorSPX v2;// = RobotMap.v0;
+private WPI_VictorSPX motor1;// = RobotMap.v1;
+private WPI_VictorSPX motor2;// = RobotMap.v0;
 private Encoder enc;// = RobotMap.enc;
 private boolean toggle;
   /**
@@ -26,15 +26,16 @@ private boolean toggle;
   public Lift() {
     // Intert a subsystem name and PID values here
     super("Lift", 1, 0, 0);
-    setAbsoluteTolerance(0.1);
+    setAbsoluteTolerance(0.2);
     getPIDController().setContinuous();
 
-    v1 = RobotMap.v1;
-    v2 = RobotMap.v0;
+    motor1 = RobotMap.liftMotor1;
+    motor2 = RobotMap.liftMotor2;
     enc = RobotMap.enc;
     toggle = false;
 
-    v2.follow(v1);
+    motor2.follow(motor1);
+    enable();
     // Use these to get going:
     // setSetpoint() - Sets where the PID controller should move the system
     // to
@@ -58,7 +59,7 @@ private boolean toggle;
   protected void usePIDOutput(double output) {
     // Use output to drive your system, like a motor
     // e.g. yourMotor.set(output);
-  v1.set(output);
+  motor1.set(output);
   }
   public void setToggle(){
     toggle = !toggle;
@@ -73,9 +74,9 @@ else if (toggle == true){
     return 0.0;
   }
   public void manual(double speed){
-    v1.set(speed);
+    motor1.set(speed);
   }
   public void stopLift(){
-    v1.set(0.0);
+    motor1.set(0.0);
   }
 }

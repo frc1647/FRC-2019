@@ -7,19 +7,11 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class EncoderTest extends Command {
-  private Encoder enc = RobotMap.enc;
-private double offset;
-
-  private double kCircumference = 2*.5* Math.PI;
-
-  public EncoderTest(double dist) {
-   offset = dist;
+public class Drive extends Command {
+  public Drive() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -27,22 +19,12 @@ private double offset;
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_tankDrive.tankDrive(Robot.m_oi.getLeftJoystick().getY(), Robot.m_oi.getRightJoystick().getY());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      
-     //Since the count can be translated into revolutions this stops the motors after one revolution
-    int count = enc.get();
-    double distance = count/255 * kCircumference;
-    //System.out.println(count);
-    //255 counts equals one full revolution
-    //If you find the ratio of count/max_count then multiply that by wheel_circumference you can find distance travelled
-    if (count/255 * kCircumference <= 19 || count/255 * kCircumference <= -19 ){
-      System.out.println(count);
-      // Robot.m_exs.reset();
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

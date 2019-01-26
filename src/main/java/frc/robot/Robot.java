@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Arms;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.TankDrive;
 import frc.robot.subsystems.Vision;
 
 /**
@@ -35,7 +36,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Arms m_arms;
   public static Vision m_vision;
-
+  public static TankDrive  m_tankDrive;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -52,6 +53,7 @@ public class Robot extends TimedRobot {
     m_exs = new ExampleSubsystem();
     m_arms = new Arms();
     m_vision = new Vision();
+    m_tankDrive = new TankDrive();
     //m_liftEnum = new LiftEnum();
    // SmartDashboard.putNumber("Lift Count: ", m_lift.getCount());
 

@@ -10,7 +10,6 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
@@ -31,11 +30,21 @@ public static WPI_TalonSRX t8 = new WPI_TalonSRX(8);
 public static WPI_TalonSRX t9 = new WPI_TalonSRX(9);
 
 //Victors for the lift
-public static WPI_VictorSPX v0 = new WPI_VictorSPX(0);
-public static WPI_VictorSPX v1 = new WPI_VictorSPX(1);
+public static WPI_VictorSPX liftMotor1 = new WPI_VictorSPX(0);
+public static WPI_VictorSPX liftMotor2 = new WPI_VictorSPX(1);
 
-//Joystick for controlling the robot
-public static Joystick leftJoy = new Joystick(0);
+//Victors for drive
+public static WPI_VictorSPX leftDrive1 = new WPI_VictorSPX(2);
+public static WPI_VictorSPX leftDrive2 = new WPI_VictorSPX(3);
+public static WPI_VictorSPX rightDrive1 = new WPI_VictorSPX(4);
+public static WPI_VictorSPX RightDrive2 = new WPI_VictorSPX(5);
+
+//Controller for robot operations
+public static Joystick tablet = new Joystick(0);
+
+//Joyticks for drive
+public static Joystick driveLeft = new Joystick(1);
+public static Joystick driveRight = new Joystick(0);
 
 //The encoder for the lift that has a count of 1024 per revolution
 public static Encoder enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);

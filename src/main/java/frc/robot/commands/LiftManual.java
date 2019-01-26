@@ -20,7 +20,7 @@ public class LiftManual extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_lift.manual(Robot.m_oi.getJoystick().getY());
+    Robot.m_lift.manual(Robot.m_oi.getTabletJoystick().getY());
   }
 
   // Called repeatedly when this Command is scheduled to run
