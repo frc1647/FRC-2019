@@ -20,13 +20,14 @@ public class LiftManual extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_lift.manual(Robot.m_oi.getJoystick().getY());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     //Sets the speed of the lift motors
-    Robot.m_lift.manualControl(0.25);
+  
   }
 
   // Make this return true when this Command no longer needs to run execute()

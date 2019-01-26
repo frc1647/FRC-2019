@@ -52,8 +52,8 @@ public class Robot extends TimedRobot {
     m_exs = new ExampleSubsystem();
     m_arms = new Arms();
     m_vision = new Vision();
-
-    SmartDashboard.putNumber("Lift Count: ", m_lift.getCount());
+    //m_liftEnum = new LiftEnum();
+   // SmartDashboard.putNumber("Lift Count: ", m_lift.getCount());
 
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -81,7 +81,7 @@ public class Robot extends TimedRobot {
   public void disabledInit() {
     //Resets all areas of the robot when disabled
     m_exs.reset();
-    m_lift.stop();
+    //m_lift.stop();
   }
 
   @Override

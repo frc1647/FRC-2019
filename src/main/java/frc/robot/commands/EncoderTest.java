@@ -14,11 +14,12 @@ import frc.robot.RobotMap;
 
 public class EncoderTest extends Command {
   private Encoder enc = RobotMap.enc;
+private double offset;
 
   private double kCircumference = 2*.5* Math.PI;
 
-  public EncoderTest() {
-   
+  public EncoderTest(double dist) {
+   offset = dist;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

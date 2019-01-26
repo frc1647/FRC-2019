@@ -35,7 +35,7 @@ public static WPI_VictorSPX v0 = new WPI_VictorSPX(0);
 public static WPI_VictorSPX v1 = new WPI_VictorSPX(1);
 
 //Joystick for controlling the robot
-public static Joystick leftJoy = new Joystick(1);
+public static Joystick leftJoy = new Joystick(0);
 
 //The encoder for the lift that has a count of 1024 per revolution
 public static Encoder enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);

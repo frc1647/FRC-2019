@@ -10,13 +10,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.EncoderTest;
 import frc.robot.commands.ExampleClose;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.LiftHLow;
 import frc.robot.commands.LiftManual;
-//import frc.robot.commands.EncoderTest;
+import frc.robot.commands.LiftMove;
 import frc.robot.commands.LiftStop;
+import frc.robot.commands.ToggleLift;
+import frc.robot.subsystems.LiftEnum;
 
 
 /**
@@ -31,25 +31,31 @@ public OI(){
   //Buttons on the joystick
  Button motorTest = new JoystickButton(joyS, 1),
         motorStop = new JoystickButton(joyS, 2),
-        buttonLift = new JoystickButton(joyS, 3),
-        distanceTest = new JoystickButton(joyS, 5),
-        encoderTest = new JoystickButton(joyS, 7);
+        manualLift = new JoystickButton(joyS, 3),
+        liftLow = new JoystickButton(joyS, 4),
+        liftMid = new JoystickButton(joyS, 5),
+        liftHigh = new JoystickButton(joyS, 6),
+        toggleLift = new JoystickButton(joyS, 7);
+
+
 
         //What happens when certain buttons are pressed
         //Each button relates to a single command
-//motorTest.whenReleased(new EncoderTest());
-distanceTest.whenPressed(new LiftHLow());
-buttonLift.whenPressed(new LiftManual());
+toggleLift.toggleWhenPressed(new ToggleLift());       
+manualLift.whenPressed(new LiftManual());
 motorTest.whenPressed(new ExampleCommand());
 motorStop.whenPressed(new ExampleClose());
-encoderTest.whenActive(new EncoderTest());
-distanceTest.whenInactive(new LiftStop());
+liftLow.whenPressed(new LiftMove(LiftEnum.LOW));
+liftMid.whenPressed(new LiftMove(LiftEnum.MID));
+liftHigh.whenPressed(new LiftMove(LiftEnum.HIGH));
 
-encoderTest.close();
-distanceTest.close();
+toggleLift.close();
 motorTest.close();
 motorStop.close();
-buttonLift.close();
+manualLift.close();
+liftLow.close();
+liftMid.close();
+liftHigh.close();
 }
 
 public Joystick getJoystick(){

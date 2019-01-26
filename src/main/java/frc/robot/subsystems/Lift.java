@@ -8,99 +8,74 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import frc.robot.RobotMap;
+
 /**
  * Add your docs here.
  */
-//Declaring the motors and mechanisms that will be used in the Lift subsystem
-public class Lift extends Subsystem {
-private WPI_VictorSPX v1 = RobotMap.v1;
-private WPI_VictorSPX v2 = RobotMap.v0;
-private Encoder enc = RobotMap.enc;
-//private DigitalInput limitSwitch = RobotMap.limitSwitch;
-//Declaring other variable that will be used
-private int count = enc.get();
-private double kCircumference = 2*.5* Math.PI;
+public class Lift extends PIDSubsystem {
+private WPI_VictorSPX v1;// = RobotMap.v1;
+private WPI_VictorSPX v2;// = RobotMap.v0;
+private Encoder enc;// = RobotMap.enc;
+private boolean toggle;
+  /**
+   * Add your docs here.
+   */
+  public Lift() {
+    // Intert a subsystem name and PID values here
+    super("Lift", 1, 0, 0);
+    setAbsoluteTolerance(0.1);
+    getPIDController().setContinuous();
 
-//public Lift(){
-//v2.follow(v1);
-  //}
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+    v1 = RobotMap.v1;
+    v2 = RobotMap.v0;
+    enc = RobotMap.enc;
+    toggle = false;
+
+    v2.follow(v1);
+    // Use these to get going:
+    // setSetpoint() - Sets where the PID controller should move the system
+    // to
+    // enable() - Enables the PID controller.
+  }
 
   @Override
   public void initDefaultCommand() {
-    //v2.follow(v1);
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-  //Since the lift motor geabox has two motors both need to have the same speed in order spin the gears and not break
-  //If nothing happens when the motors whould be spinning then diable the robot immediately
-  public void manualControl(double speed){
-    v1.set(speed);
-    v2.set(speed);
-  }
-  public void stop(){
-    v1.set(0);
-    v2.set(0);
-  }
-  public int getCount(){
-    return count;
-  }
-  
-  /*the methods below set the lift to set positions (those being the hatch heights on the rocket)
-  All the math is in inches and 255 counts makes one full revolution
-  The shaft diameter is about .5 inches making the circumference PI
-  If you find the ratio of count/max_count then multiply that by wheel_circumference you can find distance travelled
-  You can compare the distance travelled to the how high you want to go 
-  While the distance travelled is less than what is needed then turn on motors else turn off*/
-  //Once the redline encoder comes in the 255 will need to be changed
-  public void rocketLowHatch(){
-    while ((count/255 * kCircumference) < 19 || (count/255 * kCircumference) > -19){
-      System.out.println(count/255 * kCircumference);
-      manualControl(0.05);
-    }
-    stop();
-  }
-  public void rocketMidHatch(){
-    while ((count/255 * kCircumference) < 47 || (count/255 * kCircumference) > -47){
-      manualControl(.05);
-    }
-    stop();
-  }
-  public void rocketHighHatch(){
-    while ((count/255 * kCircumference) < 75 || (count/255 * kCircumference) > -75){
-      manualControl(0.05);}
-    //  if (limitSwitch.get() == true){ stop(); }
-   // }
-   // stop();
-  }
-  public void cargoLow(){
-    while ((count/255 * kCircumference) < 27 || (count/255 * kCircumference) > -27){
-      manualControl(.05);
-    }
-    stop();
-  }
-  public void cargoMid(){
 
-    while ((count/255 * kCircumference) < 55 || (count/255 * kCircumference) > -55){
-      manualControl(.05);
-    }
-    stop();
+  @Override
+  protected double returnPIDInput() {
+    // Return your input value for the PID loop
+    // e.g. a sensor, like a potentiometer:
+    // yourPot.getAverageVoltage() / kYourMaxVoltage;
+    return enc.get();
   }
-  public void cargoHigh(){
-    while ((count/255 * kCircumference) < 83 || (count/255 * kCircumference) > -83){
-      manualControl(.05);
-    }
-    stop();
+@Override
+  protected void usePIDOutput(double output) {
+    // Use output to drive your system, like a motor
+    // e.g. yourMotor.set(output);
+  v1.set(output);
   }
-  public void cargoBay(){
-    while ((count/255 * kCircumference) < 32 || (count/255 * kCircumference) > -32){
-      manualControl(.05);
-    }
-    stop();
+  public void setToggle(){
+    toggle = !toggle;
+  }
+  public double getOffset(){
+if (toggle == false){
+  return 500;
+}
+else if (toggle == true){
+  return 1000;
+}
+    return 0.0;
+  }
+  public void manual(double speed){
+    v1.set(speed);
+  }
+  public void stopLift(){
+    v1.set(0.0);
   }
 }
