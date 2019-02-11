@@ -10,23 +10,21 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LiftManual extends Command {
-  public LiftManual() {
+public class StopArm extends Command {
+  public StopArm() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.lift);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.lift.manualLift(Robot.oi.getTabletJoystick().getY());
+    Robot.arms.stopMotor();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-     Robot.lift.manualLift(Robot.oi.getTabletJoystick().getY());
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Arms;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.TankDrive;
 import frc.robot.subsystems.Vision;
@@ -31,12 +30,11 @@ import frc.robot.subsystems.Vision;
 public class Robot extends TimedRobot {
 
   //Creating instances of each subsystem so they can be used throughout the robot project
-  public static ExampleSubsystem m_exs;
-  public static Lift m_lift;
-  public static OI m_oi;
-  public static Arms m_arms;
-  public static Vision m_vision;
-  public static TankDrive  m_tankDrive;
+  public static Lift lift= new Lift();;
+  public static OI oi;
+  public static Arms arms= new Arms();;
+  public static Vision vision= new Vision();;
+  public static TankDrive  tankDrive = new TankDrive();;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -48,12 +46,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     //Initializes subsystem when the robot is intitilized
-    m_oi = new OI();
-    m_lift = new Lift();
-    m_exs = new ExampleSubsystem();
-    m_arms = new Arms();
-    m_vision = new Vision();
-    m_tankDrive = new TankDrive();
+    oi = new OI();
+   
     //m_liftEnum = new LiftEnum();
    // SmartDashboard.putNumber("Lift Count: ", m_lift.getCount());
 
@@ -82,8 +76,10 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledInit() {
     //Resets all areas of the robot when disabled
-    m_exs.reset();
-    //m_lift.stop();
+    lift.stopLift();
+    tankDrive.setSpeed(0, 0);
+    tankDrive.arcade(0, 0);
+    arms.stopMotor();
   }
 
   @Override

@@ -16,7 +16,7 @@ public class LiftMove extends Command {
   public LiftMove() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_lift);
+   // requires(Robot.lift);
   }
 public LiftMove(LiftEnum height){
 distance = height;
@@ -25,7 +25,7 @@ distance = height;
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_lift.setSetpoint(distance.getLift() + Robot.m_lift.getOffset());
+     Robot.lift.setSetpoint(distance.HIGH.getLift() + Robot.lift.getOffset());
   }
   // Called repeatedly when this Command is scheduled to run
   @Override
@@ -35,7 +35,7 @@ distance = height;
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Math.abs(Robot.m_lift.getSetpoint() - Robot.m_lift.getPosition()) < .2;
+    return Math.abs(Robot.lift.getSetpoint() - Robot.lift.getPosition()) < .2;
   }
 
   // Called once after isFinished returns true

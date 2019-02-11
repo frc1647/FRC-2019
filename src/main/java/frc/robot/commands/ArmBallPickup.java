@@ -9,37 +9,38 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
-public class ExampleClose extends Command {
-  public ExampleClose() {
+public class ArmBallPickup extends Command {
+  public ArmBallPickup() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-  //  requires(Robot.m_exs);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_exs.stop();
-    //Robot.m_lift.stop();
+    Robot.arms.setMotor(-0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_exs.stop();
-  //  Robot.m_lift.stop();
+    while (RobotMap.sensor3.get() == false){
+      Robot.arms.setMotor(-0.5);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return RobotMap.sensor3.get();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.arms.stopMotor();
   }
 
   // Called when another command which requires one or more of the same

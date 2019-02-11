@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -13,42 +6,45 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
+import frc.robot.commands.Drive;
 
 /**
  * Add your docs here.
  */
 public class TankDrive extends Subsystem {
-  //Motor declarations from RobotMap
-  private WPI_VictorSPX lDrive1;// = RobotMap.leftDrive1;
-  private WPI_VictorSPX lDrive2;// = RobotMap.leftDrive2;
-  private WPI_VictorSPX rDrive1;// = RobotMap.rightDrive1;
-  private WPI_VictorSPX rDrive2;// = RobotMap.RightDrive2;
-
-  //Motor control groups
-  private SpeedControllerGroup leftDrive;// = new SpeedControllerGroup(lDrive1, lDrive2);
-  private SpeedControllerGroup rightDrive;// = new SpeedControllerGroup(rDrive1, rDrive2);
-
-  //
-  private DifferentialDrive driveTrain;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+private WPI_VictorSPX leftTalon1;// = RobotMap.talon1;
+private WPI_VictorSPX leftTalon2;// = RobotMap.talon2;
+private WPI_VictorSPX rightTalon1;// = RobotMap.talon3;
+private WPI_VictorSPX rightTalon2;// = RobotMap.talon4;
+
+private SpeedControllerGroup leftSide;// = new SpeedControllerGroup(leftTalon1, leftTalon2);
+private SpeedControllerGroup rightSide;// = new SpeedControllerGroup(rightTalon1, rightTalon2);
+
+private DifferentialDrive driveTrain;// = new DifferentialDrive(leftSide, rightSide);
+  
 public TankDrive(){
-  lDrive1 = RobotMap.leftDrive1;
-  lDrive2 = RobotMap.leftDrive2;
-  rDrive1 = RobotMap.rightDrive1;
-  rDrive2 = RobotMap.RightDrive2;
+  leftTalon1 = RobotMap.leftMotor1;
+  leftTalon2 = RobotMap.leftMotor2;
+  rightTalon1 = RobotMap.rightMotor1;
+  rightTalon2 = RobotMap.rightMotor2;
 
-  leftDrive = new SpeedControllerGroup(lDrive1, lDrive2);
-  rightDrive = new SpeedControllerGroup(rDrive1, rDrive2);
+  leftSide = new SpeedControllerGroup(leftTalon1, leftTalon2);  
+  rightSide = new SpeedControllerGroup(rightTalon1, rightTalon2);
 
-  driveTrain = new DifferentialDrive(leftDrive, rightDrive);
+  driveTrain = new DifferentialDrive(leftSide, rightSide);
 }
-  @Override
+@Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+     setDefaultCommand(new Drive());
   }
-  public void tankDrive(double leftSpeed, double rightSpeed){
+
+  public void setSpeed(double leftSpeed, double rightSpeed){
     driveTrain.tankDrive(leftSpeed, rightSpeed);
   }
+public void arcade(double forwardSpeed, double turnSpeed){
+driveTrain.arcadeDrive(forwardSpeed, turnSpeed);
+}
 }

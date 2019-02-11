@@ -14,17 +14,19 @@ public class Drive extends Command {
   public Drive() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.tankDrive);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_tankDrive.tankDrive(Robot.m_oi.getLeftJoystick().getY(), Robot.m_oi.getRightJoystick().getY());
+    Robot.tankDrive.setSpeed(Robot.oi.getLeftJoystick().getY(), Robot.oi.getRightJoystick().getY());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.tankDrive.setSpeed(Robot.oi.getLeftJoystick().getY(), Robot.oi.getRightJoystick().getY());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -36,6 +38,7 @@ public class Drive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    //Robot.drive.setSpeed(0.0, 0.0);
   }
 
   // Called when another command which requires one or more of the same

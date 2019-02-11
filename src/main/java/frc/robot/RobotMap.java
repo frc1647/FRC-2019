@@ -8,7 +8,7 @@
 package frc.robot;
 
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -25,36 +25,52 @@ public class RobotMap {
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
 
-//Test talons on the testbench
-public static WPI_TalonSRX t8 = new WPI_TalonSRX(8);
-public static WPI_TalonSRX t9 = new WPI_TalonSRX(9);
 
 //Victors for the lift
-public static WPI_VictorSPX liftMotor1 = new WPI_VictorSPX(0);
-public static WPI_VictorSPX liftMotor2 = new WPI_VictorSPX(1);
+// public static WPI_VictorSPX liftMotor1 = new WPI_VictorSPX(0);
+// public static WPI_VictorSPX liftMotor2 = new WPI_VictorSPX(1);
+//backup talons for lift
+public static WPI_VictorSPX liftMotor1 = new WPI_VictorSPX(2);
+public static WPI_VictorSPX liftMotor2 = new WPI_VictorSPX(4);
 
 //Victors for drive
-public static WPI_VictorSPX leftDrive1 = new WPI_VictorSPX(2);
-public static WPI_VictorSPX leftDrive2 = new WPI_VictorSPX(3);
-public static WPI_VictorSPX rightDrive1 = new WPI_VictorSPX(4);
-public static WPI_VictorSPX RightDrive2 = new WPI_VictorSPX(5);
+// public static WPI_VictorSPX leftDrive1 = new WPI_VictorSPX(2);
+// public static WPI_VictorSPX leftDrive2 = new WPI_VictorSPX(3);
+// public static WPI_VictorSPX rightDrive1 = new WPI_VictorSPX(4);
+// public static WPI_VictorSPX RightDrive2 = new WPI_VictorSPX(5);
+//Backup talons for drive
+public static WPI_VictorSPX leftMotor1 = new WPI_VictorSPX(1);
+public static WPI_VictorSPX leftMotor2 = new WPI_VictorSPX(2);
+public static WPI_VictorSPX rightMotor1 = new WPI_VictorSPX(3);
+public static WPI_VictorSPX rightMotor2 = new WPI_VictorSPX(4);
+
 
 //Controller for robot operations
 public static Joystick tablet = new Joystick(0);
 
 //Joyticks for drive
 public static Joystick driveLeft = new Joystick(1);
-public static Joystick driveRight = new Joystick(0);
+public static Joystick driveRight = new Joystick(2);
 
 //The encoder for the lift that has a count of 1024 per revolution
-public static Encoder enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+//public static Encoder enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 
-//Declaring limit switch for lift and Hall Effect sensor for arms
+//Declaring sensors for arms and limit switches for lift
 //The limit switch makes sure the lift doesn't go too high and break the robot
-//The hall Effect sensor would stop the arms at certain points
-//public static DigitalInput limitSwitch = new DigitalInput(0);
-//public static DigitalInput hallEffect = new DigitalInput(1);
+//The touchless encoder sensor would stop the arms at certain points by identifying a changes on metal surfaces
+ public static DigitalInput sensor1 = new DigitalInput(4);
+public static DigitalInput sensor2 = new DigitalInput(5);
+public static DigitalInput sensor3 = new DigitalInput(6);
+//public static DigitalInput tlen4 = new DigitalInput(4);
 
+//Motor controller for the arm motor
+//public static WPI_VictorSPX armMotor = new WPI_VictorSPX(6);
+//backup talon for arms
+public static WPI_VictorSPX windowMotor = new WPI_VictorSPX(0);
+
+// public static DigitalInput rightAngleSen1 = new DigitalInput(4);
+//   public static DigitalInput rightAngleSen2 = new DigitalInput(5);
+//   public static DigitalInput rightAngleSen3 = new DigitalInput(6);
   // If you are using multipe modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;

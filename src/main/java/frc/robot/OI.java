@@ -10,10 +10,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.ExampleClose;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.ArmBallPickup;
+import frc.robot.commands.ArmHatch;
+import frc.robot.commands.ArmInitial;
+import frc.robot.commands.ArmOpenBall;
 import frc.robot.commands.LiftManual;
 import frc.robot.commands.LiftMove;
+import frc.robot.commands.LineLeft;
+import frc.robot.commands.LineRight;
+import frc.robot.commands.LineStraight;
 import frc.robot.commands.ToggleLift;
 import frc.robot.subsystems.LiftEnum;
 
@@ -34,30 +39,47 @@ public OI(){
   rDrive = RobotMap.driveRight;
 
   //Buttons on the joystick
- Button motorTest = new JoystickButton(tab, 1),
-        motorStop = new JoystickButton(tab, 2),
-        manualLift = new JoystickButton(tab, 3),
-        liftLow = new JoystickButton(tab, 4),
-        liftMid = new JoystickButton(tab, 5),
-        liftHigh = new JoystickButton(tab, 6),
-        toggleLift = new JoystickButton(tab, 7);
+      JoystickButton/// manualLift = new JoystickButton(tab, 1),
+        liftLow = new JoystickButton(tab, 2),
+        liftMid = new JoystickButton(tab, 3),
+        liftHigh = new JoystickButton(tab, 4),
+        toggleLift = new JoystickButton(tab, 5),
+
+        ballPickup = new JoystickButton(tab, 6),
+        openArms = new JoystickButton(tab, 7),
+        armHatch = new JoystickButton(tab, 8),
+        armInitial = new JoystickButton(tab, 9);
+
+      //  lineTrace = new JoystickButton(rDrive, 2);
 
 
 
   //What happens when certain buttons are pressed
   //Each button relates to a single command
   toggleLift.toggleWhenPressed(new ToggleLift());       
-  manualLift.whenPressed(new LiftManual());
-  motorTest.whenPressed(new ExampleCommand());
-  motorStop.whenPressed(new ExampleClose());
+ // manualLift.whenPressed(new LiftManual());
   liftLow.whenPressed(new LiftMove(LiftEnum.LOW));
   liftMid.whenPressed(new LiftMove(LiftEnum.MID));
   liftHigh.whenPressed(new LiftMove(LiftEnum.HIGH));
 
+  ballPickup.whenPressed(new ArmBallPickup());
+  openArms.whenPressed(new ArmOpenBall());
+  armHatch.whenPressed(new ArmHatch());
+  armInitial.whenPressed(new ArmInitial());
+
+  // lineTrace.whileHeld(new LineLeft());
+  // lineTrace.whileHeld(new LineRight());
+  // lineTrace.whileHeld(new LineStraight());
+  
+  ballPickup.close();
+  openArms.close();
+  armHatch.close();
+  armInitial.close();
+
+  //lineTrace.close();
+
   toggleLift.close();
-  motorTest.close();
-  motorStop.close();
-  manualLift.close();
+ // manualLift.close();
   liftLow.close();
   liftMid.close();
   liftHigh.close();
@@ -68,10 +90,10 @@ public Joystick getTabletJoystick(){
   return tab;
 }
 public Joystick getLeftJoystick(){
-  return tab;
+  return lDrive;
 }
 public Joystick getRightJoystick(){
-  return tab;
+  return rDrive;
 }
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a

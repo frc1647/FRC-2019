@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -16,9 +18,23 @@ public class Arms extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
+  private static WPI_VictorSPX motor = RobotMap.windowMotor;
+
+  // private static DigitalInput initialPos = RobotMap.tlen1;
+  // private static DigitalInput grabHatch = RobotMap.tlen2;
+  // private static DigitalInput pickupBall = RobotMap.tlen3;
+  // private static DigitalInput openBall = RobotMap.tlen4;
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
+public void setMotor(double speed){
+  motor.set(speed);
+}
+public void stopMotor(){
+  motor.stopMotor();
+}
+
 }

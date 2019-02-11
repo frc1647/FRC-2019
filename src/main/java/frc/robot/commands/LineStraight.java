@@ -7,26 +7,36 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
-public class LiftManual extends Command {
-  public LiftManual() {
+public class LineStraight extends Command {
+  private DigitalInput lSensor;// = RobotMap.rightAngleSen1;
+  private DigitalInput mSensor;// = RobotMap.rightAngleSen2;
+  private DigitalInput rSensor;// = RobotMap.rightAngleSen3;
+
+  public LineStraight() {
+    lSensor = RobotMap.sensor1;
+    mSensor = RobotMap.sensor2;
+    rSensor = RobotMap.sensor3;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.lift);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.lift.manualLift(Robot.oi.getTabletJoystick().getY());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-     Robot.lift.manualLift(Robot.oi.getTabletJoystick().getY());
+    if ((lSensor.get() == false) && (mSensor.get() == true) && (rSensor.get() == false)){
+      Robot.tankDrive.arcade(0.75, 0.0);
+    }
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
