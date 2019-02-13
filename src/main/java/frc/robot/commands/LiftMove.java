@@ -9,23 +9,22 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.LiftEnum;
 
 public class LiftMove extends Command {
-  private LiftEnum distance;
+  private double distance;
   public LiftMove() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
    // requires(Robot.lift);
   }
-public LiftMove(LiftEnum height){
-distance = height;
+public LiftMove(double motorCounts){
+  distance = motorCounts;
 }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-     Robot.lift.setSetpoint(distance.HIGH.getLift() + Robot.lift.getOffset());
+     Robot.lift.setSetpoint(distance + Robot.lift.getOffset());
   }
   // Called repeatedly when this Command is scheduled to run
   @Override

@@ -30,11 +30,11 @@ import frc.robot.subsystems.Vision;
 public class Robot extends TimedRobot {
 
   //Creating instances of each subsystem so they can be used throughout the robot project
-  public static Lift lift= new Lift();;
+  public static Lift lift = new Lift();
   public static OI oi;
-  public static Arms arms= new Arms();;
-  public static Vision vision= new Vision();;
-  public static TankDrive  tankDrive = new TankDrive();;
+  public static Arms arms = new Arms();
+  public static Vision vision = new Vision();
+  public static TankDrive  tankDrive = new TankDrive();
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -66,6 +66,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putBoolean("TLEN one value", RobotMap.tlen1.get());
+    //SmartDashboard.putBoolean("line trace value", RobotMap.lineSensorMid.get());
+    SmartDashboard.putNumber("Offset", lift.getOffset());
+    SmartDashboard.putNumber("Red Line Counter: ", lift.enc.get());
+    SmartDashboard.putNumber("Lift Speed", oi.getLeftJoystick().getY());
   }
 
   /**

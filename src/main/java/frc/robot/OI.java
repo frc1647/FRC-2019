@@ -8,7 +8,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ArmBallPickup;
 import frc.robot.commands.ArmHatch;
@@ -16,11 +15,11 @@ import frc.robot.commands.ArmInitial;
 import frc.robot.commands.ArmOpenBall;
 import frc.robot.commands.LiftManual;
 import frc.robot.commands.LiftMove;
+import frc.robot.commands.LiftStop;
 import frc.robot.commands.LineLeft;
 import frc.robot.commands.LineRight;
 import frc.robot.commands.LineStraight;
 import frc.robot.commands.ToggleLift;
-import frc.robot.subsystems.LiftEnum;
 
 
 /**
@@ -33,22 +32,33 @@ Joystick tab;
 Joystick lDrive;
 Joystick rDrive;
 
+double kliftHigh;// = 86382.0;
+double kliftMid ;//;= 29307.0;
+double kliftLow;// = 0.0;
+double liftInit;
+
 public OI(){
   tab = RobotMap.tablet;
   lDrive = RobotMap.driveLeft;
   rDrive = RobotMap.driveRight;
 
+  kliftHigh  = 86382.0;
+  kliftMid = 29307.0;
+  kliftLow = 0.0;
+  liftInit = Robot.lift.getOffset();
+
   //Buttons on the joystick
-      JoystickButton/// manualLift = new JoystickButton(tab, 1),
+      JoystickButton //manualLift = new JoystickButton(tab, 1),
         liftLow = new JoystickButton(tab, 2),
-        liftMid = new JoystickButton(tab, 3),
+        liftMid = new JoystickButton(tab, 9),
         liftHigh = new JoystickButton(tab, 4),
-        toggleLift = new JoystickButton(tab, 5),
+        toggleLift = new JoystickButton(tab, 7),
+        liftReset = new JoystickButton(tab, 10),
 
         ballPickup = new JoystickButton(tab, 6),
-        openArms = new JoystickButton(tab, 7),
-        armHatch = new JoystickButton(tab, 8),
-        armInitial = new JoystickButton(tab, 9);
+        openArms = new JoystickButton(tab, 5),
+        armHatch = new JoystickButton(tab, 1),
+        armInitial = new JoystickButton(tab, 3);
 
       //  lineTrace = new JoystickButton(rDrive, 2);
 
@@ -56,11 +66,15 @@ public OI(){
 
   //What happens when certain buttons are pressed
   //Each button relates to a single command
-  toggleLift.toggleWhenPressed(new ToggleLift());       
- // manualLift.whenPressed(new LiftManual());
-  liftLow.whenPressed(new LiftMove(LiftEnum.LOW));
-  liftMid.whenPressed(new LiftMove(LiftEnum.MID));
-  liftHigh.whenPressed(new LiftMove(LiftEnum.HIGH));
+  toggleLift.toggleWhenPressed(new ToggleLift());
+
+ //manualLift.whenActive(new LiftManual());
+ // manualLift.whenReleased(new LiftStop());
+
+  liftLow.whenPressed(new LiftMove(kliftLow));
+  liftMid.whenPressed(new LiftMove(kliftMid));
+  liftHigh.whenPressed(new LiftMove(kliftHigh));
+  liftReset.whenPressed(new LiftMove(/*-Robot.lift.getOffset()*/ liftInit));
 
   ballPickup.whenPressed(new ArmBallPickup());
   openArms.whenPressed(new ArmOpenBall());
@@ -79,10 +93,11 @@ public OI(){
   //lineTrace.close();
 
   toggleLift.close();
- // manualLift.close();
+ //manualLift.close();
   liftLow.close();
   liftMid.close();
   liftHigh.close();
+  liftReset.close();
 }
 
 //Gets joysticks so they can be used for controlling speeds in various commands

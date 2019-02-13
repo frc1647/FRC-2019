@@ -20,11 +20,6 @@ public class Arms extends Subsystem {
 
   private static WPI_VictorSPX motor = RobotMap.windowMotor;
 
-  // private static DigitalInput initialPos = RobotMap.tlen1;
-  // private static DigitalInput grabHatch = RobotMap.tlen2;
-  // private static DigitalInput pickupBall = RobotMap.tlen3;
-  // private static DigitalInput openBall = RobotMap.tlen4;
-
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

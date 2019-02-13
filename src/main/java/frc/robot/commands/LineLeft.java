@@ -18,9 +18,9 @@ public class LineLeft extends Command {
   private DigitalInput rSensor;
 
   public LineLeft() {
-    lSensor = RobotMap.sensor1;
-    mSensor = RobotMap.sensor2;
-    rSensor = RobotMap.sensor3;
+    lSensor = RobotMap.tlen1;//linesensorLeft;
+    mSensor = RobotMap.tlen2;//lineSensorMid;
+    rSensor = RobotMap.tlen3;//lineSensorRight;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

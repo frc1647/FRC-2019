@@ -21,9 +21,9 @@ public class Lift extends PIDSubsystem {
   /**
    * Add your docs here.
    */
-  private WPI_VictorSPX tMotor1;
-private WPI_VictorSPX tMotor2;
-private Encoder enc;
+  private WPI_VictorSPX motor1;
+private WPI_VictorSPX motor2;
+public Encoder enc;
 private boolean toggle;
   /**
    * Add your docs here.
@@ -36,14 +36,12 @@ private boolean toggle;
 
    // motor1 = RobotMap.liftMotor1;
    // motor2 = RobotMap.liftMotor2;
-   tMotor1 = RobotMap.liftMotor1;
-   tMotor2 = RobotMap.liftMotor2;
-    //enc = RobotMap.enc;
+   motor1 = RobotMap.liftMotor1;
+   motor2 = RobotMap.liftMotor2;
+   enc = RobotMap.redLineEnc;
     toggle = false;
 
-    tMotor2.follow(tMotor1);
-//    motor2.follow(motor1);
-    enable();
+   enable();
     // Use these to get going:
     // setSetpoint() - Sets where the PID controller should move the system
     // to
@@ -61,35 +59,37 @@ private boolean toggle;
     // Return your input value for the PID loop
     // e.g. a sensor, like a potentiometer:
     // yourPot.getAverageVoltage() / kYourMaxVoltage;
-    return 0.0;//enc.get();
+    return enc.get() / 1024;
   }
 @Override
   protected void usePIDOutput(double output) {
     // Use output to drive your system, like a motor
     // e.g. yourMotor.set(output);
  // motor1.set(output);
- tMotor1.set(output);
+ motor1.set(output);
   }
   public void setToggle(){
     toggle = !toggle;
   }
   public double getOffset(){
 if (toggle == false){
-  return 500;
+  return 29307.0;
 }
 else if (toggle == true){
-  return 1000;
+  return 43191.0;
 }
     return 0.0;
   }
   public void manualLift(double speed){
-    //motor1.set(speed);
-    tMotor1.set(speed);
-    tMotor2.set(speed);
+    disable();
+ // System.out.println(speed);
+    motor1.set(speed);
+   motor2.set(speed);
   }
   public void stopLift(){
-   // motor1.set(0.0);
-   tMotor1.set(0.0);
-   tMotor2.set(0.0);
+   motor1.set(0.0);
+  motor2.set(0.0);
+  enc.reset();
+  
   }
 }

@@ -26,7 +26,7 @@ public class ArmHatch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    while (RobotMap.sensor2.get() == false){
+    while (RobotMap.tlen2.get() == true){
       Robot.arms.setMotor(0.5);
     }
   }
@@ -34,7 +34,7 @@ public class ArmHatch extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return RobotMap.sensor2.get();
+    return RobotMap.tlen2.get();
   }
 
   // Called once after isFinished returns true

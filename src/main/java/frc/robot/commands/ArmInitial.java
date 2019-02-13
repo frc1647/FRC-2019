@@ -26,7 +26,7 @@ public class ArmInitial extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    while (RobotMap.sensor1.get() == false){
+    while (RobotMap.tlen1.get() == true){
       Robot.arms.setMotor(-0.5);
     }
   }
@@ -34,7 +34,7 @@ public class ArmInitial extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return RobotMap.sensor1.get();
+    return RobotMap.tlen1.get();
   }
 
   // Called once after isFinished returns true

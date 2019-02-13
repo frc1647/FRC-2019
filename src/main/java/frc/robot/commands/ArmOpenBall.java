@@ -26,7 +26,7 @@ public class ArmOpenBall extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    while (RobotMap.sensor3.get() == false){
+    while (RobotMap.tlen3.get() == false){
       Robot.arms.setMotor(-0.5);
     }
   }
@@ -34,7 +34,7 @@ public class ArmOpenBall extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return RobotMap.sensor3.get();
+    return RobotMap.tlen3.get();
   }
 
   // Called once after isFinished returns true
