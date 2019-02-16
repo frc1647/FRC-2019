@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class StopArm extends Command {
-  public StopArm() {
+public class ArmManual extends Command {
+  public ArmManual() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.arms);
@@ -20,12 +20,29 @@ public class StopArm extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.arms.stopMotor();
+    if (Robot.oi.getTabletJoystick().getRawAxis(4) > 0){
+          Robot.arms.setMotor(0.75);
+       }
+       if (Robot.oi.getTabletJoystick().getRawAxis(4) < 0){
+         Robot.arms.setMotor(-0.75);
+      }
+      if (Robot.oi.getTabletJoystick().getRawAxis(4) == 0){
+       Robot.arms.setMotor(0);
+      }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if (Robot.oi.getTabletJoystick().getRawAxis(4) > 0){
+          Robot.arms.setMotor(0.75);
+       }
+       if (Robot.oi.getTabletJoystick().getRawAxis(4) < 0){
+         Robot.arms.setMotor(-0.75);
+      }
+      if (Robot.oi.getTabletJoystick().getRawAxis(4) == 0){
+       Robot.arms.setMotor(0);
+      }
   }
 
   // Make this return true when this Command no longer needs to run execute()

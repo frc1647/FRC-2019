@@ -48,4 +48,7 @@ public TankDrive(){
 public void arcade(double forwardSpeed, double turnSpeed){
 driveTrain.arcadeDrive(forwardSpeed, turnSpeed);
 }
+public void stopDrive(){
+  driveTrain.stopMotor();
+}
 }

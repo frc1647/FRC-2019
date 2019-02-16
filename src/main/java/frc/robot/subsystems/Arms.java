@@ -10,6 +10,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.ArmManual;
+import frc.robot.commands.StopArm;
 
 /**
  * Add your docs here.
@@ -23,7 +25,7 @@ public class Arms extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new ArmManual());
   }
 public void setMotor(double speed){
   motor.set(speed);

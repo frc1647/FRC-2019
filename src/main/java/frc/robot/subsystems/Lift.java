@@ -7,89 +7,61 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.LiftManual;
 
 /**
  * Add your docs here.
  */
-public class Lift extends PIDSubsystem {
-  /**
-   * Add your docs here.
-   */
-  private WPI_VictorSPX motor1;
-private WPI_VictorSPX motor2;
-public Encoder enc;
-private boolean toggle;
-  /**
-   * Add your docs here.
-   */
-  public Lift() {
-    // Intert a subsystem name and PID values here
-    super("Lift", 1, 0, 0);
-    setAbsoluteTolerance(0.2);
-    getPIDController().setContinuous(false);
+public class Lift extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+  public WPI_TalonSRX motor1;
+  private boolean toggle;
+  
+public Lift(){
+  motor1 = RobotMap.liftMotor1;
+  
+  motor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+}
 
-   // motor1 = RobotMap.liftMotor1;
-   // motor2 = RobotMap.liftMotor2;
-   motor1 = RobotMap.liftMotor1;
-   motor2 = RobotMap.liftMotor2;
-   enc = RobotMap.redLineEnc;
-    toggle = false;
 
-   enable();
-    // Use these to get going:
-    // setSetpoint() - Sets where the PID controller should move the system
-    // to
-    // enable() - Enables the PID controller.
-  }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     setDefaultCommand(new LiftManual());
   }
+  public void setLift(double speed){
+    motor1.pidWrite(speed);
+    //Robot.oi.getTabletJoystick().getRawButton(0);
+   }
 
-  @Override
-  protected double returnPIDInput() {
-    // Return your input value for the PID loop
-    // e.g. a sensor, like a potentiometer:
-    // yourPot.getAverageVoltage() / kYourMaxVoltage;
-    return enc.get() / 1024;
-  }
-@Override
-  protected void usePIDOutput(double output) {
-    // Use output to drive your system, like a motor
-    // e.g. yourMotor.set(output);
- // motor1.set(output);
- motor1.set(output);
-  }
-  public void setToggle(){
-    toggle = !toggle;
-  }
-  public double getOffset(){
-if (toggle == false){
-  return 29307.0;
+ public void stopLift(){
+ // motor1.stopMotor();
+ motor1.set(ControlMode.PercentOutput, 0);
+// motor1.pidWrite(0);
+ }
+
+ public double getSpeed(){
+  return motor1.get();
+ }
+
+ public void setToggle(){
+  toggle = !toggle;
 }
-else if (toggle == true){
-  return 43191.0;
+public double getOffset(){
+if (toggle == true){
+return 372048.0;
 }
-    return 0.0;
-  }
-  public void manualLift(double speed){
-    disable();
- // System.out.println(speed);
-    motor1.set(speed);
-   motor2.set(speed);
-  }
-  public void stopLift(){
-   motor1.set(0.0);
-  motor2.set(0.0);
-  enc.reset();
-  
-  }
+  else {
+    return 252543.0;}
 }
+}
+

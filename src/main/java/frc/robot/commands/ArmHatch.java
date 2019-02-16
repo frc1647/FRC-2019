@@ -20,15 +20,15 @@ public class ArmHatch extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.arms.setMotor(0.5);
+    Robot.arms.setMotor(0.75);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    while (RobotMap.tlen2.get() == true){
-      Robot.arms.setMotor(0.5);
-    }
+   // while (RobotMap.tlen2.get() == true){
+      Robot.arms.setMotor(0.75);
+  //  }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -48,5 +48,6 @@ public class ArmHatch extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.arms.stopMotor();
   }
 }

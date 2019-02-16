@@ -27,24 +27,14 @@ public class RobotMap {
   // public static int rightMotor = 2;
 
 
-//Victors for the lift
-// public static WPI_VictorSPX liftMotor1 = new WPI_VictorSPX(0);
-// public static WPI_VictorSPX liftMotor2 = new WPI_VictorSPX(1);
-//backup talons for lift
-public static WPI_VictorSPX liftMotor1 = new WPI_VictorSPX(3);
-public static WPI_VictorSPX liftMotor2 = new WPI_VictorSPX(0);
+//Lift motor
+public static WPI_TalonSRX liftMotor1 = new WPI_TalonSRX(5);
 
-//Victors for drive
-// public static WPI_VictorSPX leftDrive1 = new WPI_VictorSPX(2);
-// public static WPI_VictorSPX leftDrive2 = new WPI_VictorSPX(3);
-// public static WPI_VictorSPX rightDrive1 = new WPI_VictorSPX(4);
-// public static WPI_VictorSPX RightDrive2 = new WPI_VictorSPX(5);
-//Backup talons for drive
+//Motorcontrolers for drive
 public static WPI_VictorSPX leftMotor1 = new WPI_VictorSPX(4);
 public static WPI_TalonSRX leftMotor2 = new WPI_TalonSRX(8);
 public static WPI_VictorSPX rightMotor1 = new WPI_VictorSPX(5);
 public static WPI_TalonSRX rightMotor2 = new WPI_TalonSRX(9);
-
 
 //Controller for robot operations
 public static Joystick tablet = new Joystick(0);
@@ -54,15 +44,11 @@ public static Joystick driveLeft = new Joystick(1);
 public static Joystick driveRight = new Joystick(2);
 
 //The encoder for the lift that has a count of 1024 per revolution
-public static Encoder redLineEnc = new Encoder(8, 9, false, Encoder.EncodingType.k4X);
+
 
 //Declaring sensors for arms and limit switches for lift
 //The limit switch makes sure the lift doesn't go too high and break the robot
 //The touchless encoder sensor would stop the arms at certain points by identifying a changes on metal surfaces
-
-//public static DigitalInput linesensorLeft = new DigitalInput(3);
-//public static DigitalInput lineSensorMid = new DigitalInput(5);
-//public static DigitalInput lineSensorRight = new DigitalInput(6);
 
 public static DigitalInput tlen1 = new DigitalInput(0);
 public static DigitalInput tlen2 = new DigitalInput(1);

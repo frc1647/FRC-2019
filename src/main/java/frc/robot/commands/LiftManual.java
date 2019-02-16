@@ -9,26 +9,35 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class LiftManual extends Command {
   public LiftManual() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.lift);
+   requires(Robot.lift);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-   // Robot.lift.manualLift(Robot.oi.getTabletJoystick().getRawAxis(4));
-    Robot.lift.manualLift(Robot.oi.getTabletJoystick().getY());
+//  Robot.lift.manualLift(Robot.oi.getTabletJoystick().getRawAxis(3));
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.lift.manualLift(Robot.oi.getTabletJoystick().getRawAxis(4));
-    Robot.lift.manualLift(Robot.oi.getTabletJoystick().getY());
+
+   if (Robot.oi.getTabletJoystick().getRawAxis(3) > 0){
+    Robot.lift.setLift(1.0);
+ }
+else if (Robot.oi.getTabletJoystick().getRawAxis(3)< 0){
+   Robot.lift.setLift(-1.0);
+}
+else if (Robot.oi.getTabletJoystick().getRawAxis(3) == 0){
+ Robot.lift.stopLift();
+}
+//Robot.lift.setSetpoint(RobotMap.liftMotor1.getSelectedSensorPosition(0));
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -9,17 +9,19 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.ArmBallPickup;
+import frc.robot.commands.ArmCloseBall;
 import frc.robot.commands.ArmHatch;
 import frc.robot.commands.ArmInitial;
 import frc.robot.commands.ArmOpenBall;
+import frc.robot.commands.LiftHigh;
+import frc.robot.commands.LiftInit;
+import frc.robot.commands.LiftLow;
 import frc.robot.commands.LiftManual;
-import frc.robot.commands.LiftMove;
+import frc.robot.commands.LiftMid;
 import frc.robot.commands.LiftStop;
 import frc.robot.commands.LineLeft;
 import frc.robot.commands.LineRight;
 import frc.robot.commands.LineStraight;
-import frc.robot.commands.ToggleLift;
 
 
 /**
@@ -32,51 +34,49 @@ Joystick tab;
 Joystick lDrive;
 Joystick rDrive;
 
-double kliftHigh;// = 86382.0;
-double kliftMid ;//;= 29307.0;
-double kliftLow;// = 0.0;
-double liftInit;
+public static final double kliftHigh= 86382.0;
+public static final double kliftMid = 29307.0;
+public static final double kliftLow = 0.0;
 
 public OI(){
   tab = RobotMap.tablet;
   lDrive = RobotMap.driveLeft;
   rDrive = RobotMap.driveRight;
 
-  kliftHigh  = 86382.0;
-  kliftMid = 29307.0;
-  kliftLow = 0.0;
-  liftInit = Robot.lift.getOffset();
+  // kliftHigh  = 744096.0;
+  // kliftMid = 3720448.0;
+  // kliftLow = 0.0;
+ // liftInit = Robot.lift.getOffset();
 
   //Buttons on the joystick
       JoystickButton //manualLift = new JoystickButton(tab, 1),
-        liftLow = new JoystickButton(tab, 2),
-        liftMid = new JoystickButton(tab, 9),
-        liftHigh = new JoystickButton(tab, 4),
-        toggleLift = new JoystickButton(tab, 7),
-        liftReset = new JoystickButton(tab, 10),
+        liftLow = new JoystickButton(tab, 3),
+        liftMid = new JoystickButton(tab, 2),
+        liftHigh = new JoystickButton(tab, 1),
+        toggleLift = new JoystickButton(tab, 8),
+        liftReset = new JoystickButton(tab, 4),
 
-        ballPickup = new JoystickButton(tab, 6),
-        openArms = new JoystickButton(tab, 5),
-        armHatch = new JoystickButton(tab, 1),
-        armInitial = new JoystickButton(tab, 3);
+        closeArms = new JoystickButton(tab, 6),
+        openArms = new JoystickButton(tab, 7),
+        armHatch = new JoystickButton(tab, 10),
+
+        armInitial = new JoystickButton(tab, 5);
 
       //  lineTrace = new JoystickButton(rDrive, 2);
 
-
-
   //What happens when certain buttons are pressed
   //Each button relates to a single command
-  toggleLift.toggleWhenPressed(new ToggleLift());
+ // toggleLift.toggleWhenPressed(new ToggleLift());
 
- //manualLift.whenActive(new LiftManual());
- // manualLift.whenReleased(new LiftStop());
+//manualLift.whenActive(new LiftManual());
+// manualLift.whenReleased(new LiftStop());
 
-  liftLow.whenPressed(new LiftMove(kliftLow));
-  liftMid.whenPressed(new LiftMove(kliftMid));
-  liftHigh.whenPressed(new LiftMove(kliftHigh));
-  liftReset.whenPressed(new LiftMove(/*-Robot.lift.getOffset()*/ liftInit));
+  liftLow.whenPressed(new LiftLow());
+  liftMid.whenPressed(new LiftMid());
+  liftHigh.whenPressed(new LiftHigh());
+  liftReset.whenPressed(new LiftInit());
 
-  ballPickup.whenPressed(new ArmBallPickup());
+  closeArms.whenPressed(new ArmCloseBall());
   openArms.whenPressed(new ArmOpenBall());
   armHatch.whenPressed(new ArmHatch());
   armInitial.whenPressed(new ArmInitial());
@@ -85,7 +85,7 @@ public OI(){
   // lineTrace.whileHeld(new LineRight());
   // lineTrace.whileHeld(new LineStraight());
   
-  ballPickup.close();
+  closeArms.close();
   openArms.close();
   armHatch.close();
   armInitial.close();

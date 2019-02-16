@@ -47,10 +47,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     //Initializes subsystem when the robot is intitilized
     oi = new OI();
-   
-    //m_liftEnum = new LiftEnum();
-   // SmartDashboard.putNumber("Lift Count: ", m_lift.getCount());
-
+    RobotMap.liftMotor1.setSelectedSensorPosition(0);
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -67,10 +64,15 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     SmartDashboard.putBoolean("TLEN one value", RobotMap.tlen1.get());
-    //SmartDashboard.putBoolean("line trace value", RobotMap.lineSensorMid.get());
+
+    SmartDashboard.putBoolean("Toggle Boolean: ", Robot.oi.getTabletJoystick().getRawButton(8));
+
     SmartDashboard.putNumber("Offset", lift.getOffset());
-    SmartDashboard.putNumber("Red Line Counter: ", lift.enc.get());
-    SmartDashboard.putNumber("Lift Speed", oi.getLeftJoystick().getY());
+    SmartDashboard.putNumber("Talon Encoder Count: ", RobotMap.liftMotor1.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Lift Speed", lift.getSpeed());
+    SmartDashboard.putNumber("Arm Speed", RobotMap.windowMotor.get());
+    SmartDashboard.putNumber("Lift Joystick Value: ", oi.getTabletJoystick().getRawAxis(3));
+    // SmartDashboard.putNumber("Set Point Value: ", lift.getSetpoint());
   }
 
   /**
@@ -85,6 +87,7 @@ public class Robot extends TimedRobot {
     tankDrive.setSpeed(0, 0);
     tankDrive.arcade(0, 0);
     arms.stopMotor();
+    RobotMap.liftMotor1.setSelectedSensorPosition(0);
   }
 
   @Override
@@ -105,6 +108,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    lift.stopLift();
+    arms.stopMotor();
     m_autonomousCommand = m_chooser.getSelected();
     teleopInit();
 
@@ -131,6 +136,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    lift.stopLift();
+   tankDrive.stopDrive();
+    arms.stopMotor();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
