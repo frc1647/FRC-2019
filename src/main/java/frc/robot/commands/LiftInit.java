@@ -16,7 +16,7 @@ public class LiftInit extends Command {
   private double desiredHeight;
   private double currentHeight;
   private double tolerance;
-  private double offset;
+ // private double offset;
   private WPI_TalonSRX liftMotor;
   
   public LiftInit() {
@@ -29,12 +29,12 @@ public class LiftInit extends Command {
     currentHeight = liftMotor.getSelectedSensorPosition(0);
     tolerance = 26578.0;
 
-    if (Robot.oi.getTabletJoystick().getRawButton(8)){
-offset = 372048;
-    }
-    else{
-offset = 252543.0;
-    }
+//     if (Robot.oi.getTabletJoystick().getRawButton(8)){
+// offset = 372048;
+//     }
+//     else{
+// offset = 252543.0;
+//     }
 desiredHeight = 0;
   }
 
@@ -54,4 +54,14 @@ desiredHeight = 0;
   protected boolean isFinished() {
     return Math.abs(currentHeight - desiredHeight) < tolerance;
   }
-}
+    // Called once after isFinished returns true
+    @Override
+    protected void end() {
+    }
+  
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    @Override
+    protected void interrupted() {
+    }
+  }

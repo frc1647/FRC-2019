@@ -7,8 +7,6 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
@@ -17,7 +15,6 @@ public class LiftLow extends Command {
   private double currentHeight;
   private double tolerance;
   private double offset;
-  private WPI_TalonSRX liftMotor;
   public LiftLow() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);

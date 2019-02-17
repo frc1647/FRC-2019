@@ -9,19 +9,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.ArmCloseBall;
-import frc.robot.commands.ArmHatch;
-import frc.robot.commands.ArmInitial;
-import frc.robot.commands.ArmOpenBall;
 import frc.robot.commands.LiftHigh;
 import frc.robot.commands.LiftInit;
 import frc.robot.commands.LiftLow;
-import frc.robot.commands.LiftManual;
 import frc.robot.commands.LiftMid;
-import frc.robot.commands.LiftStop;
-import frc.robot.commands.LineLeft;
-import frc.robot.commands.LineRight;
-import frc.robot.commands.LineStraight;
 
 
 /**
@@ -49,51 +40,28 @@ public OI(){
  // liftInit = Robot.lift.getOffset();
 
   //Buttons on the joystick
-      JoystickButton //manualLift = new JoystickButton(tab, 1),
+      JoystickButton
         liftLow = new JoystickButton(tab, 3),
         liftMid = new JoystickButton(tab, 2),
         liftHigh = new JoystickButton(tab, 1),
-        toggleLift = new JoystickButton(tab, 8),
-        liftReset = new JoystickButton(tab, 4),
-
-        closeArms = new JoystickButton(tab, 6),
-        openArms = new JoystickButton(tab, 7),
-        armHatch = new JoystickButton(tab, 10),
-
-        armInitial = new JoystickButton(tab, 5);
+        liftReset = new JoystickButton(tab, 4);
 
       //  lineTrace = new JoystickButton(rDrive, 2);
 
   //What happens when certain buttons are pressed
   //Each button relates to a single command
- // toggleLift.toggleWhenPressed(new ToggleLift());
-
-//manualLift.whenActive(new LiftManual());
-// manualLift.whenReleased(new LiftStop());
-
   liftLow.whenPressed(new LiftLow());
   liftMid.whenPressed(new LiftMid());
   liftHigh.whenPressed(new LiftHigh());
   liftReset.whenPressed(new LiftInit());
 
-  closeArms.whenPressed(new ArmCloseBall());
-  openArms.whenPressed(new ArmOpenBall());
-  armHatch.whenPressed(new ArmHatch());
-  armInitial.whenPressed(new ArmInitial());
-
   // lineTrace.whileHeld(new LineLeft());
   // lineTrace.whileHeld(new LineRight());
   // lineTrace.whileHeld(new LineStraight());
   
-  closeArms.close();
-  openArms.close();
-  armHatch.close();
-  armInitial.close();
 
   //lineTrace.close();
 
-  toggleLift.close();
- //manualLift.close();
   liftLow.close();
   liftMid.close();
   liftHigh.close();
