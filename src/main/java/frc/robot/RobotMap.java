@@ -26,7 +26,7 @@ public class RobotMap {
 
 
 //Lift motor
-public static WPI_TalonSRX liftMotor1 = new WPI_TalonSRX(5);
+public static WPI_TalonSRX liftMotor = new WPI_TalonSRX(5);
 
 //Motorcontrolers for drive
 public static WPI_VictorSPX leftMotor1 = new WPI_VictorSPX(4);
@@ -41,27 +41,13 @@ public static Joystick tablet = new Joystick(0);
 public static Joystick driveLeft = new Joystick(1);
 public static Joystick driveRight = new Joystick(2);
 
-//The encoder for the lift that has a count of 1024 per revolution
-
-
-//Declaring sensors for arms and limit switches for lift
-//The limit switch makes sure the lift doesn't go too high and break the robot
-//The touchless encoder sensor would stop the arms at certain points by identifying a changes on metal surfaces
-
-public static DigitalInput tlen1 = new DigitalInput(0);
-public static DigitalInput tlen2 = new DigitalInput(1);
-public static DigitalInput tlen3 = new DigitalInput(2);
-public static DigitalInput tlen4 = new DigitalInput(3);
-public static DigitalInput tlen5 = new DigitalInput(4);
-
 //Motor controller for the arm motor
-//public static WPI_VictorSPX armMotor = new WPI_VictorSPX(6);
-//backup talon for arms
 public static WPI_VictorSPX windowMotor = new WPI_VictorSPX(2);
 
-// public static DigitalInput rightAngleSen1 = new DigitalInput(4);
-//   public static DigitalInput rightAngleSen2 = new DigitalInput(5);
-//   public static DigitalInput rightAngleSen3 = new DigitalInput(6);
+//Limit Switches for the lift
+public static DigitalInput lowLimit = new DigitalInput(5);
+public static DigitalInput highLimit = new DigitalInput(6);
+
   // If you are using multipe modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;

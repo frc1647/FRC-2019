@@ -18,9 +18,9 @@ public class LineRight extends Command {
   private DigitalInput rSensor;// = RobotMap.rightAngleSen3;
 
   public LineRight() {
-    lSensor = RobotMap.tlen1;//linesensorLeft;
-    mSensor = RobotMap.tlen2;//lineSensorMid;
-    rSensor = RobotMap.tlen3;//lineSensorRight;
+    // lSensor = RobotMap.tlen1;//linesensorLeft;
+    // mSensor = RobotMap.tlen2;//lineSensorMid;
+    // rSensor = RobotMap.tlen3;//lineSensorRight;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

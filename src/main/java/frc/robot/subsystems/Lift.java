@@ -21,13 +21,13 @@ import frc.robot.commands.LiftManual;
 public class Lift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public WPI_TalonSRX motor1;
+  public WPI_TalonSRX motorOne;
   private boolean toggle;
   
 public Lift(){
-  motor1 = RobotMap.liftMotor1;
+  motorOne = RobotMap.liftMotor;
   
-  motor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+  motorOne.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 }
 
 
@@ -38,18 +38,18 @@ public Lift(){
     setDefaultCommand(new LiftManual());
   }
   public void setLift(double speed){
-    motor1.pidWrite(speed);
+    motorOne.pidWrite(speed);
     //Robot.oi.getTabletJoystick().getRawButton(0);
    }
 
  public void stopLift(){
- // motor1.stopMotor();
- motor1.set(ControlMode.PercentOutput, 0);
-// motor1.pidWrite(0);
+ // motorOne.stopMotor();
+ motorOne.set(ControlMode.PercentOutput, 0);
+// motorOne.pidWrite(0);
  }
 
  public double getSpeed(){
-  return motor1.get();
+  return motorOne.get();
  }
 
  public void setToggle(){

@@ -21,7 +21,7 @@ public class LiftHigh extends Command {
   private WPI_TalonSRX liftMotor;
 
   public LiftHigh() {
-    liftMotor = RobotMap.liftMotor1;
+    liftMotor = RobotMap.liftMotor;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

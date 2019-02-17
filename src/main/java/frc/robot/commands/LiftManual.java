@@ -7,11 +7,22 @@
 
 package frc.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class LiftManual extends Command {
+  private DigitalInput lowLim;
+  private DigitalInput highLim;
+  private WPI_TalonSRX liftMotor;
+
   public LiftManual() {
+    liftMotor = RobotMap.liftMotor;
+    lowLim = RobotMap.lowLimit;
+    highLim = RobotMap.highLimit;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
    requires(Robot.lift);
@@ -42,12 +53,19 @@ else if (Robot.oi.getTabletJoystick().getRawAxis(3) == 0){
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return lowLim.get() || highLim.get();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    if (lowLim.get()){
+   liftMotor.setSelectedSensorPosition(0);
+    Robot.lift.stopLift();
+  }
+  else{
+    Robot.lift.stopLift();
+  } 
   }
 
   // Called when another command which requires one or more of the same

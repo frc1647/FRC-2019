@@ -47,7 +47,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     //Initializes subsystem when the robot is intitilized
     oi = new OI();
-    RobotMap.liftMotor1.setSelectedSensorPosition(0);
+    RobotMap.liftMotor.setSelectedSensorPosition(0);
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -63,12 +63,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putBoolean("TLEN one value", RobotMap.tlen1.get());
 
     SmartDashboard.putBoolean("Toggle Boolean: ", Robot.oi.getTabletJoystick().getRawButton(8));
-
     SmartDashboard.putNumber("Offset", lift.getOffset());
-    SmartDashboard.putNumber("Talon Encoder Count: ", RobotMap.liftMotor1.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Talon Encoder Count: ", RobotMap.liftMotor.getSelectedSensorPosition());
     SmartDashboard.putNumber("Lift Speed", lift.getSpeed());
     SmartDashboard.putNumber("Arm Speed", RobotMap.windowMotor.get());
     SmartDashboard.putNumber("Lift Joystick Value: ", oi.getTabletJoystick().getRawAxis(3));
@@ -87,7 +85,6 @@ public class Robot extends TimedRobot {
     tankDrive.setSpeed(0, 0);
     tankDrive.arcade(0, 0);
     arms.stopMotor();
-    RobotMap.liftMotor1.setSelectedSensorPosition(0);
   }
 
   @Override

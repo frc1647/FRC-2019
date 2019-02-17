@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class LiftMid extends Command {
   private double desiredHeight;
@@ -20,6 +21,7 @@ public class LiftMid extends Command {
   private WPI_TalonSRX liftMotor;
   
   public LiftMid() {
+    liftMotor = RobotMap.liftMotor;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

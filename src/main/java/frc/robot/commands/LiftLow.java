@@ -7,15 +7,21 @@
 
 package frc.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class LiftLow extends Command {
   private double desiredHeight;
   private double currentHeight;
   private double tolerance;
   private double offset;
+  private WPI_TalonSRX liftMotor;
+  
   public LiftLow() {
+    liftMotor = RobotMap.liftMotor;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -23,7 +29,7 @@ public class LiftLow extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    currentHeight = Robot.lift.motor1.getSelectedSensorPosition(0);
+    currentHeight = liftMotor.getSelectedSensorPosition(0);
     tolerance = 26578.0;
 
     if (Robot.oi.getTabletJoystick().getRawButton(8)){
