@@ -63,13 +63,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-
-    SmartDashboard.putBoolean("Toggle Boolean: ", Robot.oi.getTabletJoystick().getRawButton(8));
-    SmartDashboard.putNumber("Offset", lift.getOffset());
-    SmartDashboard.putNumber("Talon Encoder Count: ", RobotMap.liftMotor.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Lift Speed", lift.getSpeed());
-    SmartDashboard.putNumber("Arm Speed", RobotMap.windowMotor.get());
-    SmartDashboard.putNumber("Lift Joystick Value: ", oi.getTabletJoystick().getRawAxis(3));
+    lift.log();
+    arms.log();
     // SmartDashboard.putNumber("Set Point Value: ", lift.getSetpoint());
   }
 

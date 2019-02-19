@@ -12,6 +12,8 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.LiftManual;
 
@@ -38,7 +40,7 @@ public Lift(){
     setDefaultCommand(new LiftManual());
   }
   public void setLift(double speed){
-    motorOne.pidWrite(speed);
+    motorOne.set(speed);
     //Robot.oi.getTabletJoystick().getRawButton(0);
    }
 
@@ -61,6 +63,13 @@ return 372048.0;
 }
   else {
     return 252543.0;}
+}
+public void log(){
+  SmartDashboard.putBoolean("Toggle Boolean: ", Robot.oi.getTabletJoystick().getRawButton(8));
+  SmartDashboard.putNumber("Offset", getOffset());
+  SmartDashboard.putNumber("Talon Encoder Count: ", motorOne.getSelectedSensorPosition());
+  SmartDashboard.putNumber("Lift Speed", getSpeed());
+  SmartDashboard.putNumber("Lift Joystick Value: ", Robot.oi.getTabletJoystick().getRawAxis(3));
 }
 }
 

@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.ArmManual;
 
@@ -31,6 +32,9 @@ public void setMotor(double speed){
 }
 public void stopMotor(){
   motor.stopMotor();
+}
+public void log(){
+  SmartDashboard.putNumber("Arm Speed", RobotMap.windowMotor.get());
 }
 
 }
