@@ -47,25 +47,26 @@ else if (Robot.oi.getTabletJoystick().getRawAxis(3)< 0){
 else if (Robot.oi.getTabletJoystick().getRawAxis(3) == 0){
  Robot.lift.stopLift();
 }
+
+}
 //Robot.lift.setSetpoint(RobotMap.liftMotor1.getSelectedSensorPosition(0));
-  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return lowLim.get() || highLim.get();
+    return false;//lowLim.get() || highLim.get();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    if (lowLim.get()){
-   liftMotor.setSelectedSensorPosition(0);
-    Robot.lift.stopLift();
-  }
-  else{
-    Robot.lift.stopLift();
-  } 
+  //   if (lowLim.get()){
+  //  liftMotor.setSelectedSensorPosition(0);
+  //   Robot.lift.stopLift();
+  // }
+  // else{
+  //   Robot.lift.stopLift();
+  // } 
   }
 
   // Called when another command which requires one or more of the same

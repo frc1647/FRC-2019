@@ -22,17 +22,25 @@ public class ArmManual extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    if (Robot.oi.getTabletJoystick().getRawAxis(4) > 0){
-          Robot.arms.setMotor(0.75);
-       }
-       if (Robot.oi.getTabletJoystick().getRawAxis(4) < 0){
-         Robot.arms.setMotor(-0.75);
-      }
-      if (Robot.oi.getTabletJoystick().getRawAxis(4) == 0){
-       Robot.arms.setMotor(0);
-      }
+  //   if (Robot.oi.getTabletJoystick().getRawAxis(4) > 0){
+  //         Robot.arms.setMotor(0.75);
+  //      }
+  //      if (Robot.oi.getTabletJoystick().getRawAxis(4) < 0){
+  //        Robot.arms.setMotor(-0.75);
+  //     }
+  //     if (Robot.oi.getTabletJoystick().getRawAxis(4) == 0){
+  //      Robot.arms.setMotor(0);
+  //     }
+  // }
+  if (Robot.oi.getLeftJoystick().getRawButton(4)){
+    Robot.arms.setMotor(0.75);
   }
-
+  else if (Robot.oi.getLeftJoystick().getRawButton(5)){
+   Robot.arms.setMotor(-0.75);
+  }
+  else{// if (Robot.oi.getTabletJoystick().getRawAxis(3) == 0){
+  Robot.lift.stopLift();}
+  }
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
@@ -45,7 +53,9 @@ public class ArmManual extends Command {
       if (Robot.oi.getTabletJoystick().getRawAxis(4) == 0){
        Robot.arms.setMotor(0);
       }
+ 
   }
+  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
