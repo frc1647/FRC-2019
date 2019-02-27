@@ -21,7 +21,6 @@ public class LiftManual extends Command {
 
   public LiftManual() {
     liftMotor = RobotMap.liftMotor;
-    lowLim = RobotMap.lowLimit;
     highLim = RobotMap.highLimit;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -31,13 +30,21 @@ public class LiftManual extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-//  Robot.lift.manualLift(Robot.oi.getTabletJoystick().getRawAxis(3));
+    if (Robot.oi.getTabletJoystick().getRawAxis(3) > 0){
+      Robot.lift.setLift(0.75);
+   }
+  else if (Robot.oi.getTabletJoystick().getRawAxis(3) < 0){
+     Robot.lift.setLift(-0.75);
+  }
+  else if (Robot.oi.getTabletJoystick().getRawAxis(3) == 0){
+   Robot.lift.stopLift();
+  }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
+    Robot.lift.setToggle();
    if (Robot.oi.getTabletJoystick().getRawAxis(3) > 0){
     Robot.lift.setLift(1.0);
  }
@@ -54,19 +61,16 @@ else if (Robot.oi.getTabletJoystick().getRawAxis(3) == 0){
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;//lowLim.get() || highLim.get();
+    return false;//highLim.get();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-  //   if (lowLim.get()){
-  //  liftMotor.setSelectedSensorPosition(0);
-  //   Robot.lift.stopLift();
-  // }
-  // else{
-  //   Robot.lift.stopLift();
-  // } 
+   // if (highLim.get()){
+    Robot.lift.stopLift();
+  //}
+ 
   }
 
   // Called when another command which requires one or more of the same

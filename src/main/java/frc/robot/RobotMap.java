@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Servo;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -48,10 +49,11 @@ public static Joystick driveRight = new Joystick(2);
 public static WPI_VictorSPX windowMotor = new WPI_VictorSPX(2);
 
 //Limit Switches for the lift
-public static DigitalInput lowLimit = new DigitalInput(0);
-public static DigitalInput highLimit = new DigitalInput(1);
+public static DigitalInput highLimit = new DigitalInput(0);
 
 public static Pixy2 pixycam = Pixy2.createInstance(LinkType.SPI);
+
+public static Servo ballServo = new Servo(1);
   // If you are using multipe modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;

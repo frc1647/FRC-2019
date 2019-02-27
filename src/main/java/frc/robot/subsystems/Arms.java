@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
@@ -19,7 +21,7 @@ import frc.robot.commands.ArmManual;
 public class Arms extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
+  private static Servo servo = RobotMap.ballServo;
   private static WPI_VictorSPX motor = RobotMap.windowMotor;
 
   @Override
@@ -32,6 +34,9 @@ public void setMotor(double speed){
 }
 public void stopMotor(){
   motor.stopMotor();
+}
+public void setServo(double position){
+servo.set(position);
 }
 public void log(){
   SmartDashboard.putNumber("Arm Speed", RobotMap.windowMotor.get());

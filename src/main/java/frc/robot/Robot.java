@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -47,7 +48,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     //Initializes subsystem when the robot is intitilized
     oi = new OI();
-    RobotMap.liftMotor.setSelectedSensorPosition(0);
+    
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -63,8 +64,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    
     lift.log();
     arms.log();
+    SmartDashboard.putBoolean("High Limit Switch", RobotMap.highLimit.get());
     // SmartDashboard.putNumber("Set Point Value: ", lift.getSetpoint());
   }
 
@@ -77,6 +80,8 @@ public class Robot extends TimedRobot {
   public void disabledInit() {
     //Resets all areas of the robot when disabled
     lift.stopLift();
+    RobotMap.liftMotor.setSelectedSensorPosition(0);
+    Scheduler.getInstance().removeAll();
     tankDrive.setSpeed(0, 0);
     tankDrive.arcade(0, 0);
     arms.stopMotor();
@@ -115,6 +120,7 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
+  
     }
   }
 

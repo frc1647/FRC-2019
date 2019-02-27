@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import io.github.pseudoresonance.pixy2api.Pixy2;
@@ -27,6 +28,8 @@ public class Vision extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    
+    //CameraServer.getInstance().addCamera(pixycam);
   }
   public void getVideo(){
     pixycam.getVideo(); 

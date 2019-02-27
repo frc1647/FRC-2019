@@ -28,7 +28,7 @@ public class Lift extends Subsystem {
   
 public Lift(){
   motorOne = RobotMap.liftMotor;
-  
+  toggle = false;
   motorOne.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 }
 
@@ -55,17 +55,22 @@ public Lift(){
  }
 
  public void setToggle(){
-  toggle = !toggle;
+  toggle = Robot.oi.getTabletJoystick().getRawButton(8);
 }
+  public boolean getToggle(){
+return toggle;
+  }
 public double getOffset(){
 if (toggle == true){
-return 372048.0;
+return -7790;
 }
   else {
-    return 252543.0;}
+    return -4830;
+  }
 }
 public void log(){
-  SmartDashboard.putBoolean("Toggle Boolean: ", Robot.oi.getTabletJoystick().getRawButton(8));
+  SmartDashboard.putBoolean("Toggle Boolean: ", getToggle());
+  //SmartDashboard.putBoolean("Toggle Boolean: ", Robot.oi.getTabletJoystick().getRawButton(8));
   SmartDashboard.putNumber("Offset", getOffset());
   SmartDashboard.putNumber("Talon Encoder Count: ", motorOne.getSelectedSensorPosition());
   SmartDashboard.putNumber("Lift Speed", getSpeed());
