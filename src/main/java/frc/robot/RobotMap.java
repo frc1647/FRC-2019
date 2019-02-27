@@ -19,9 +19,9 @@ import edu.wpi.first.wpilibj.Servo;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-import io.github.pseudoresonance.pixy2api.Pixy2;
-import io.github.pseudoresonance.pixy2api.Pixy2.LinkType;
-import io.github.pseudoresonance.pixy2api.links.SPILink;
+// import io.github.pseudoresonance.pixy2api.Pixy2;
+// import io.github.pseudoresonance.pixy2api.Pixy2.LinkType;
+// import io.github.pseudoresonance.pixy2api.links.SPILink;
 public class RobotMap {
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
@@ -51,7 +51,7 @@ public static WPI_VictorSPX windowMotor = new WPI_VictorSPX(2);
 //Limit Switches for the lift
 public static DigitalInput highLimit = new DigitalInput(0);
 
-public static Pixy2 pixycam = Pixy2.createInstance(LinkType.SPI);
+// public static Pixy2 pixycam = Pixy2.createInstance(LinkType.SPI);
 
 public static Servo ballServo = new Servo(1);
   // If you are using multipe modules, make sure to define both the port

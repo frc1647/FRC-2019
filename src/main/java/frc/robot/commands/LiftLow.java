@@ -44,14 +44,14 @@ offset = Robot.lift.getOffset();
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    while (desiredHeight - currentHeight <= tolerance || desiredHeight - currentHeight >= tolerance){
+   // while (desiredHeight - currentHeight <= tolerance || desiredHeight - currentHeight >= tolerance){
         if (desiredHeight - currentHeight < 0){
       Robot.lift.setLift(-0.5);
     }
     else{
       Robot.lift.setLift(0.5);
     }
-    }
+   // }
   
 
   }
