@@ -39,6 +39,14 @@ public class LiftManual extends Command {
   else if (Robot.oi.getTabletJoystick().getRawAxis(3) == 0){
    Robot.lift.stopLift();
   }
+
+  if (Robot.oi.getRightJoystick().getRawButton(3)){
+    Robot.lift.setLift(-0.75);
+ }
+else if (Robot.oi.getRightJoystick().getRawButton(2)){
+   Robot.lift.setLift(0.75);
+}
+
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -55,21 +63,27 @@ else if (Robot.oi.getTabletJoystick().getRawAxis(3) == 0){
  Robot.lift.stopLift();
 }
 
+if (Robot.oi.getRightJoystick().getRawButton(3)){
+  Robot.lift.setLift(-0.75);
+}
+else if (Robot.oi.getRightJoystick().getRawButton(2)){
+ Robot.lift.setLift(0.75);
+}
 }
 //Robot.lift.setSetpoint(RobotMap.liftMotor1.getSelectedSensorPosition(0));
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;//highLim.get();
+    return highLim.get();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-   // if (highLim.get()){
-    Robot.lift.stopLift();
-  //}
+    if (highLim.get()){
+    Robot.lift.setLift(0.60);
+  }
  
   }
 

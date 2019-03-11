@@ -42,8 +42,8 @@ public static WPI_TalonSRX rightMotor2 = new WPI_TalonSRX(9);
 public static Joystick tablet = new Joystick(0);
 
 //Joyticks for drive
-public static Joystick driveLeft = new Joystick(1);
-public static Joystick driveRight = new Joystick(2);
+public static Joystick joystick1 = new Joystick(1);
+public static Joystick joystick2 = new Joystick(2);
 
 //Motor controller for the arm motor
 public static WPI_VictorSPX windowMotor = new WPI_VictorSPX(2);

@@ -37,19 +37,22 @@ public class LiftInit extends Command {
 //     else{
 // offset = 252543.0;
 //     }
-desiredHeight = 0;
+desiredHeight = Robot.lift.getOffset();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (desiredHeight - currentHeight < 0){
+  //  while (desiredHeight - currentHeight != 0){
+       if (desiredHeight - currentHeight < 0){
       Robot.lift.setLift(-0.5);
     }
     else{
       Robot.lift.setLift(0.5);
     }
 
+  //  }
+   
   }
   // Make this return true when this Command no longer needs to run execute()
   @Override

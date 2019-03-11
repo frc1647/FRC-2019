@@ -13,6 +13,8 @@ import frc.robot.commands.LiftHigh;
 import frc.robot.commands.LiftInit;
 import frc.robot.commands.LiftLow;
 import frc.robot.commands.LiftMid;
+import frc.robot.commands.LowerBallRamp;
+import frc.robot.commands.RaiseBallRamp;
 
 
 /**
@@ -31,8 +33,8 @@ public static final double kliftLow = 0.0;
 
 public OI(){
   tab = RobotMap.tablet;
-  lDrive = RobotMap.driveLeft;
-  rDrive = RobotMap.driveRight;
+  lDrive = RobotMap.joystick1;
+  rDrive = RobotMap.joystick2;
 
   // kliftHigh  = 744096.0;
   // kliftMid = 3720448.0;
@@ -44,7 +46,9 @@ public OI(){
         liftLow = new JoystickButton(tab, 3),
         liftMid = new JoystickButton(tab, 2),
         liftHigh = new JoystickButton(tab, 1),
-        liftReset = new JoystickButton(tab, 4);
+        liftReset = new JoystickButton(tab, 4),
+        kickall = new JoystickButton(tab, 7),
+        resetBall = new JoystickButton(tab, 6);
 
       //  lineTrace = new JoystickButton(rDrive, 2);
 
@@ -55,6 +59,9 @@ public OI(){
   liftHigh.whenPressed(new LiftHigh());
   liftReset.whenPressed(new LiftInit());
 
+  kickall.whenPressed(new RaiseBallRamp());
+  resetBall.whenPressed(new LowerBallRamp());
+  
   // lineTrace.whileHeld(new LineLeft());
   // lineTrace.whileHeld(new LineRight());
   // lineTrace.whileHeld(new LineStraight());

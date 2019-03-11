@@ -32,28 +32,39 @@ public class ArmManual extends Command {
   //      Robot.arms.setMotor(0);
   //     }
   // }
-  if (Robot.oi.getLeftJoystick().getRawButton(4)){
-    Robot.arms.setMotor(0.75);
+if (Robot.oi.getLeftJoystick().getRawButton(4)){
+  Robot.arms.setMotor(0.75);
+}
+else if (Robot.oi.getRightJoystick().getRawButton(5)){
+ Robot.arms.setMotor(-0.75);
+}
+else{
+  Robot.arms.stopMotor();
+}
   }
-  else if (Robot.oi.getLeftJoystick().getRawButton(5)){
-   Robot.arms.setMotor(-0.75);
-  }
-  else{// if (Robot.oi.getTabletJoystick().getRawAxis(3) == 0){
-  Robot.lift.stopLift();}
-  }
+
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.oi.getTabletJoystick().getRawAxis(4) > 0){
-          Robot.arms.setMotor(0.75);
-       }
-       if (Robot.oi.getTabletJoystick().getRawAxis(4) < 0){
-         Robot.arms.setMotor(-0.75);
-      }
-      if (Robot.oi.getTabletJoystick().getRawAxis(4) == 0){
-       Robot.arms.setMotor(0);
-      }
+    // if (Robot.oi.getTabletJoystick().getRawAxis(4) < 0){
+    //       Robot.arms.setMotor(0.85);
+    //    }
+    // else if (Robot.oi.getTabletJoystick().getRawAxis(4) > 0){
+    //      Robot.arms.setMotor(-0.85);
+    //   }
+    // else if (Robot.oi.getTabletJoystick().getRawAxis(4) == 0){
+    //    Robot.arms.setMotor(0);
+    //   }
  
+    if (Robot.oi.getLeftJoystick().getRawButton(4)){
+        Robot.arms.setMotor(0.85);
+      }
+    else if (Robot.oi.getLeftJoystick().getRawButton(3)){
+       Robot.arms.setMotor(-0.85);
+      }
+    else{
+        Robot.arms.stopMotor();
+      }
   }
   
 
