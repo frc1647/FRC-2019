@@ -21,23 +21,27 @@ import frc.robot.commands.ArmManual;
 public class Arms extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private static Servo servo = RobotMap.ballServo;
+  //Motor controller for the arms
   private static WPI_VictorSPX motor = RobotMap.windowMotor;
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
+    //Allows the arms to be controlled by the right slider on the tablet
     setDefaultCommand(new ArmManual());
   }
+
+//Sets motor speed as determined by commands  
 public void setMotor(double speed){
   motor.set(speed);
 }
+
+//Stops the motor
 public void stopMotor(){
   motor.stopMotor();
 }
-public void setServo(double position){
-servo.set(position);
-}
+
+//Sends data to the SmartDashboard about the arm subsystem
 public void log(){
   SmartDashboard.putNumber("Arm Speed", RobotMap.windowMotor.get());
 }

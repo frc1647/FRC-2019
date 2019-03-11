@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Arms;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.TankDrive;
-import frc.robot.subsystems.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,7 +33,6 @@ public class Robot extends TimedRobot {
   public static Lift lift = new Lift();
   public static OI oi;
   public static Arms arms = new Arms();
-  public static Vision vision = new Vision();
   public static TankDrive  tankDrive = new TankDrive();
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -48,6 +46,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     //Initializes subsystem when the robot is intitilized
     oi = new OI();
+    //Displays camera feed onto the Smartdashboard
     CameraServer.getInstance().startAutomaticCapture();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -64,11 +63,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    
+    //Displays robot data from each subsystem
     lift.log();
     arms.log();
     SmartDashboard.putBoolean("High Limit Switch", RobotMap.highLimit.get());
-    // SmartDashboard.putNumber("Set Point Value: ", lift.getSetpoint());
   }
 
   /**
@@ -78,10 +76,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    //clears scheduler when robot is disabled so no task starts when obot is enabled again
+    Scheduler.getInstance().removeAll();
     //Resets all areas of the robot when disabled
     lift.stopLift();
     RobotMap.liftMotor.setSelectedSensorPosition(0);
-    Scheduler.getInstance().removeAll();
     tankDrive.setSpeed(0, 0);
     tankDrive.arcade(0, 0);
     arms.stopMotor();
@@ -105,6 +104,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    //Incase the disabledinit() fails this serves as a backup when the match/ auto starts
     lift.stopLift();
     arms.stopMotor();
     m_autonomousCommand = m_chooser.getSelected();
@@ -134,9 +134,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    lift.stopLift();
-   tankDrive.stopDrive();
-    arms.stopMotor();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove

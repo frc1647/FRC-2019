@@ -19,6 +19,7 @@ public class LiftStop extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //Sets the lift motor to a speed of 0 stopping it
     Robot.lift.stopLift();   
   }
 

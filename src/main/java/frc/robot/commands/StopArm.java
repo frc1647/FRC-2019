@@ -19,6 +19,8 @@ public class StopArm extends Command {
 
   // Called just before this Command runs the first time
   @Override
+
+  //Stops the arm motor by setting the speed to 0
   protected void initialize() {
     Robot.arms.stopMotor();
   }

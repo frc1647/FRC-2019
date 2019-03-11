@@ -33,6 +33,7 @@ public class LineLeft extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    //If the center an right sensors are false then move to the left to center the robot
     if ((lSensor.get() == true) && (mSensor.get() == false) && (rSensor.get() == false)){
       Robot.tankDrive.arcade(0.75, -0.25);
     } 

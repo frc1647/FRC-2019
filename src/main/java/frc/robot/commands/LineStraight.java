@@ -33,6 +33,7 @@ public class LineStraight extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    //if the Left and right motors don't see anything, but the center does keep going straight
     if ((lSensor.get() == false) && (mSensor.get() == true) && (rSensor.get() == false)){
       Robot.tankDrive.arcade(0.75, 0.0);
     }

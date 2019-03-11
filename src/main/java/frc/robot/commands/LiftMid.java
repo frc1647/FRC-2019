@@ -29,6 +29,7 @@ public class LiftMid extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //Gets the curent lift height/ encoder value
     currentHeight = liftMotor.getSelectedSensorPosition(0);
     tolerance = 26578.0;
 

@@ -30,6 +30,7 @@ public class LiftManual extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //Checks where the the slider value is and sets the lift speed accordingly 
     if (Robot.oi.getTabletJoystick().getRawAxis(3) > 0){
       Robot.lift.setLift(0.75);
    }

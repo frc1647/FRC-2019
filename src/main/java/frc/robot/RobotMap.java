@@ -41,19 +41,15 @@ public static WPI_TalonSRX rightMotor2 = new WPI_TalonSRX(9);
 //Controller for robot operations
 public static Joystick tablet = new Joystick(0);
 
-//Joyticks for drive
+//Joyticks for driving
 public static Joystick joystick1 = new Joystick(1);
 public static Joystick joystick2 = new Joystick(2);
 
-//Motor controller for the arm motor
+//Motor controller for the arm/ pivot motor
 public static WPI_VictorSPX windowMotor = new WPI_VictorSPX(2);
 
-//Limit Switches for the lift
+//Limit Switch for the lift
 public static DigitalInput highLimit = new DigitalInput(0);
-
-// public static Pixy2 pixycam = Pixy2.createInstance(LinkType.SPI);
-
-public static Servo ballServo = new Servo(1);
   // If you are using multipe modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;

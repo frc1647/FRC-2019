@@ -23,10 +23,13 @@ import frc.robot.commands.LiftManual;
 public class Lift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  //Declares the variables that will be used throughuot the lift subsystem
   public WPI_TalonSRX motorOne;
+  //boolean for set positions of either the cargo or hatcher
   private boolean toggle;
   
 public Lift(){
+  //Uses variables from RobotMap 
   motorOne = RobotMap.liftMotor;
   toggle = false;
   motorOne.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
@@ -37,29 +40,35 @@ public Lift(){
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
+    //Allows the lift to be controlled by the slider whenever the robot is enabled
     setDefaultCommand(new LiftManual());
   }
+  //Sets speed of the lift as determined by the commands
   public void setLift(double speed){
     motorOne.set(speed);
-    //Robot.oi.getTabletJoystick().getRawButton(0);
    }
 
+//Sets lift speed to 0 essentiall stopping it
  public void stopLift(){
- // motorOne.stopMotor();
  motorOne.set(ControlMode.PercentOutput, 0);
-// motorOne.pidWrite(0);
  }
 
+//Gets the speed of the lift
  public double getSpeed(){
   return motorOne.get();
  }
 
+//Sets the toggle/ initial position of the set lift targets based on the togglable button value
  public void setToggle(){
   toggle = Robot.oi.getTabletJoystick().getRawButton(8);
 }
+
+//returns if the toggle is true or false
   public boolean getToggle(){
 return toggle;
   }
+
+//Returns the value of the offet/ initial value as determinded by the toggle boolean variable
 public double getOffset(){
 if (toggle == true){
 return -7790;
@@ -68,6 +77,8 @@ return -7790;
     return -4830;
   }
 }
+
+//Sends various data about the lift to the SmartDashboard
 public void log(){
   SmartDashboard.putBoolean("Toggle Boolean: ", getToggle());
   //SmartDashboard.putBoolean("Toggle Boolean: ", Robot.oi.getTabletJoystick().getRawButton(8));

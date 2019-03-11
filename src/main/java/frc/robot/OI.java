@@ -13,8 +13,6 @@ import frc.robot.commands.LiftHigh;
 import frc.robot.commands.LiftInit;
 import frc.robot.commands.LiftLow;
 import frc.robot.commands.LiftMid;
-import frc.robot.commands.LowerBallRamp;
-import frc.robot.commands.RaiseBallRamp;
 
 
 /**
@@ -23,34 +21,23 @@ import frc.robot.commands.RaiseBallRamp;
  */
 
 public class OI {
+//Creates joystick instances that will be the joysticks declared inthe RobotMap
 Joystick tab;
 Joystick lDrive;
 Joystick rDrive;
 
-public static final double kliftHigh= 86382.0;
-public static final double kliftMid = 29307.0;
-public static final double kliftLow = 0.0;
-
 public OI(){
+  //Setting the joysticks to what was delcared in the RobotMap
   tab = RobotMap.tablet;
   lDrive = RobotMap.joystick1;
   rDrive = RobotMap.joystick2;
-
-  // kliftHigh  = 744096.0;
-  // kliftMid = 3720448.0;
-  // kliftLow = 0.0;
- // liftInit = Robot.lift.getOffset();
 
   //Buttons on the joystick
       JoystickButton
         liftLow = new JoystickButton(tab, 3),
         liftMid = new JoystickButton(tab, 2),
         liftHigh = new JoystickButton(tab, 1),
-        liftReset = new JoystickButton(tab, 4),
-        kickall = new JoystickButton(tab, 7),
-        resetBall = new JoystickButton(tab, 6);
-
-      //  lineTrace = new JoystickButton(rDrive, 2);
+        liftReset = new JoystickButton(tab, 4);
 
   //What happens when certain buttons are pressed
   //Each button relates to a single command
@@ -59,16 +46,7 @@ public OI(){
   liftHigh.whenPressed(new LiftHigh());
   liftReset.whenPressed(new LiftInit());
 
-  kickall.whenPressed(new RaiseBallRamp());
-  resetBall.whenPressed(new LowerBallRamp());
-  
-  // lineTrace.whileHeld(new LineLeft());
-  // lineTrace.whileHeld(new LineRight());
-  // lineTrace.whileHeld(new LineStraight());
-  
-
-  //lineTrace.close();
-
+  //closes the buttons (personally idk why this has to be done but it doesn't break anything)
   liftLow.close();
   liftMid.close();
   liftHigh.close();
