@@ -7,20 +7,11 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class LineStraight extends Command {
-  private DigitalInput lSensor;// = RobotMap.rightAngleSen1;
-  private DigitalInput mSensor;// = RobotMap.rightAngleSen2;
-  private DigitalInput rSensor;// = RobotMap.rightAngleSen3;
-
-  public LineStraight() {
-    // lSensor = RobotMap.tlen1;//linesensorLeft;
-    // mSensor = RobotMap.tlen2;//lineSensorMid;
-    // rSensor = RobotMap.tlen3;//lineSensorRight;
+public class LowerArm extends Command {
+  public LowerArm() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -28,16 +19,12 @@ public class LineStraight extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.arms.setMotor(-0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //if the Left and right motors don't see anything, but the center does keep going straight
-    if ((lSensor.get() == false) && (mSensor.get() == true) && (rSensor.get() == false)){
-      Robot.tankDrive.arcade(0.75, 0.0);
-    }
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()

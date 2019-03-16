@@ -13,6 +13,8 @@ import frc.robot.commands.LiftHigh;
 import frc.robot.commands.LiftInit;
 import frc.robot.commands.LiftLow;
 import frc.robot.commands.LiftMid;
+import frc.robot.commands.LowerArm;
+import frc.robot.commands.RaiseArm;
 
 
 /**
@@ -37,7 +39,9 @@ public OI(){
         liftLow = new JoystickButton(tab, 3),
         liftMid = new JoystickButton(tab, 2),
         liftHigh = new JoystickButton(tab, 1),
-        liftReset = new JoystickButton(tab, 4);
+        liftReset = new JoystickButton(tab, 4),
+        raiseArm = new JoystickButton(tab, 5),
+        lowerArm = new JoystickButton(tab, 6);
 
   //What happens when certain buttons are pressed
   //Each button relates to a single command
@@ -45,12 +49,16 @@ public OI(){
   liftMid.whenPressed(new LiftMid());
   liftHigh.whenPressed(new LiftHigh());
   liftReset.whenPressed(new LiftInit());
+  raiseArm.whileHeld(new RaiseArm());
+  lowerArm.whileHeld(new LowerArm());
 
   //closes the buttons (personally idk why this has to be done but it doesn't break anything)
   liftLow.close();
   liftMid.close();
   liftHigh.close();
   liftReset.close();
+  raiseArm.close();
+  lowerArm.close();
 }
 
 //Gets joysticks so they can be used for controlling speeds in various commands
