@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Arms;
+import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.TankDrive;
 
@@ -34,6 +35,7 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static Arms arms = new Arms();
   public static TankDrive  tankDrive = new TankDrive();
+  public static Climb climbing = new Climb();
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 

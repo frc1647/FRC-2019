@@ -22,6 +22,7 @@ public class ArmManual extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //Original code to use right tablet slider to control arm motion
   //   if (Robot.oi.getTabletJoystick().getRawAxis(4) > 0){
   //         Robot.arms.setMotor(0.75);
   //      }
@@ -32,6 +33,7 @@ public class ArmManual extends Command {
   //      Robot.arms.setMotor(0);
   //     }
   // }
+   //Checks if raise and lower buttons are pressed and raises and lowers if one of the buttons is being pressed
 if (Robot.oi.getLeftJoystick().getRawButton(4)){
   Robot.arms.setMotor(0.75);
 }
@@ -46,6 +48,7 @@ else{
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+      //Original code to use right tablet slider to control arm motio
     // if (Robot.oi.getTabletJoystick().getRawAxis(4) < 0){
     //       Robot.arms.setMotor(0.85);
     //    }
@@ -55,7 +58,7 @@ else{
     // else if (Robot.oi.getTabletJoystick().getRawAxis(4) == 0){
     //    Robot.arms.setMotor(0);
     //   }
- 
+ //Checks if raise and lower buttons are pressed and raises and lowers if one of the buttons is being pressed
     if (Robot.oi.getLeftJoystick().getRawButton(4)){
         Robot.arms.setMotor(0.85);
       }

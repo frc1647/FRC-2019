@@ -9,41 +9,33 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.commands.ArmManual;
 
 /**
  * Add your docs here.
  */
-public class Arms extends Subsystem {
+public class Climb extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  //Motor controller for the arms
-  private static WPI_VictorSPX motor = RobotMap.armPivot;
 
+  private WPI_VictorSPX frontMotor;
+  private WPI_VictorSPX backMotor;
+
+  public Climb(){
+    frontMotor = RobotMap.frontLeg;
+    backMotor = RobotMap.backLeg;
+  }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    //Allows the arms to be controlled by the right slider on the tablet
-    setDefaultCommand(new ArmManual());
+    // setDefaultCommand(new MySpecialCommand());
   }
-
-//Sets motor speed as determined by commands  
-public void setMotor(double speed){
-  motor.set(speed);
-}
-
-//Stops the motor
-public void stopMotor(){
-  motor.stopMotor();
-}
-
-//Sends data to the SmartDashboard about the arm subsystem
-public void log(){
-  SmartDashboard.putNumber("Arm Speed", motor.get());
-}
-
+  public void setFront(double speed){
+frontMotor.set(speed);
+  }
+  public void setBack(double speed){
+backMotor.set(speed);
+  }
+  
 }

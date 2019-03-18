@@ -46,10 +46,14 @@ public static Joystick joystick1 = new Joystick(1);
 public static Joystick joystick2 = new Joystick(2);
 
 //Motor controller for the arm/ pivot motor
-public static WPI_VictorSPX windowMotor = new WPI_VictorSPX(2);
+public static WPI_VictorSPX armPivot = new WPI_VictorSPX(2);
 
 //Limit Switch for the lift
 public static DigitalInput highLimit = new DigitalInput(0);
+
+//Motor Controllers for climbing
+public static WPI_VictorSPX frontLeg = new WPI_VictorSPX(0);
+public static WPI_VictorSPX backLeg = new WPI_VictorSPX(1);
   // If you are using multipe modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;

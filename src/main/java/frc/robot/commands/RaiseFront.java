@@ -7,21 +7,11 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class LiftMid extends Command {
-  private double desiredHeight;
-  private double currentHeight;
-  private double tolerance;
-  private double offset;
-  private WPI_TalonSRX liftMotor;
-  
-  public LiftMid() {
-    liftMotor = RobotMap.liftMotor;
+public class RaiseFront extends Command {
+  public RaiseFront() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -29,36 +19,18 @@ public class LiftMid extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //Gets the curent lift height/ encoder value
-    currentHeight = liftMotor.getSelectedSensorPosition(0);
-    tolerance = 26578.0;
-//Checks toggle value and depending on boolean sets integer accordingly
-    if (Robot.oi.getTabletJoystick().getRawButton(8)){
-offset = 372048;
-    }
-    else{
-offset = 252543.0;
-    }
-    //Sets height that we want the lift to go to
-    desiredHeight = 372048 + offset;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Checks if the lift is above or below desired height and sets speed accordingly
-    if (desiredHeight - currentHeight < 0){
-      Robot.lift.setLift(-0.5);
-    }
-    else{
-      Robot.lift.setLift(0.5);
-    }
-
+    Robot.climbing.setFront(-0.5);
   }
+
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Math.abs(currentHeight - desiredHeight) < tolerance;
+    return false;
   }
 
   // Called once after isFinished returns true
