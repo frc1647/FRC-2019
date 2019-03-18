@@ -7,20 +7,15 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class LiftManual extends Command {
-  private DigitalInput lowLim;
   private DigitalInput highLim;
-  private WPI_TalonSRX liftMotor;
 
   public LiftManual() {
-    liftMotor = RobotMap.liftMotor;
     highLim = RobotMap.highLimit;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
