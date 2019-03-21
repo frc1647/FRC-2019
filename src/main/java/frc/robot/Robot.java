@@ -81,6 +81,7 @@ public class Robot extends TimedRobot {
     //clears scheduler when robot is disabled so no task starts when obot is enabled again
     Scheduler.getInstance().removeAll();
     //Resets all areas of the robot when disabled
+    climbing.stop();
     lift.stopLift();
     RobotMap.liftMotor.setSelectedSensorPosition(0);
     tankDrive.setSpeed(0, 0);

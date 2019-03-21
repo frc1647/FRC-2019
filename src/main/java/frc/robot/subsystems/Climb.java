@@ -37,5 +37,8 @@ frontMotor.set(speed);
   public void setBack(double speed){
 backMotor.set(speed);
   }
-  
+  public void stop(){
+    backMotor.stopMotor();
+    frontMotor.stopMotor();
+  }
 }

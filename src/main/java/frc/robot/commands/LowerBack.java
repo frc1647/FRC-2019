@@ -43,5 +43,6 @@ public class LowerBack extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.climbing.setBack(0);
   }
 }
