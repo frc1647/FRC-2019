@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -21,10 +22,19 @@ public class Climb extends Subsystem {
 
   private WPI_VictorSPX frontMotor;
   private WPI_VictorSPX backMotor;
+  private Solenoid frontSol1;
+  private Solenoid frontSol2;
+  private Solenoid backSol1;
+  private Solenoid backSol2;
 
   public Climb(){
     frontMotor = RobotMap.frontLeg;
     backMotor = RobotMap.backLeg;
+    frontSol1 = RobotMap.frontSol1;
+    frontSol2 = RobotMap.frontSol2;
+    backSol1 = RobotMap.backSol1;
+    backSol2 = RobotMap.backSol2;
+    
   }
   @Override
   public void initDefaultCommand() {

@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Solenoid;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -53,6 +54,12 @@ public static DigitalInput highLimit = new DigitalInput(0);
 //Motor Controllers for climbing
 public static WPI_VictorSPX frontLeg = new WPI_VictorSPX(0);
 public static WPI_VictorSPX backLeg = new WPI_VictorSPX(1);
+
+//Declaring Pistons
+public static Solenoid frontSol1 = new Solenoid(0);
+public static Solenoid frontSol2 = new Solenoid(1);
+public static Solenoid backSol1 = new Solenoid(2);
+public static Solenoid backSol2 = new Solenoid(3);
   // If you are using multipe modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;

@@ -21,22 +21,22 @@ public class ArmManual extends Command {
   @Override
   protected void initialize() {
     //Original code to use right tablet slider to control arm motion
-  //   if (Robot.oi.getTabletJoystick().getRawAxis(4) > 0){
-  //         Robot.arms.setMotor(0.75);
-  //      }
-  //      if (Robot.oi.getTabletJoystick().getRawAxis(4) < 0){
-  //        Robot.arms.setMotor(-0.75);
-  //     }
+    if (Robot.oi.getTabletJoystick().getRawAxis(4) > 0){
+          Robot.arms.setMotor(0.5);
+       }
+      else if (Robot.oi.getTabletJoystick().getRawAxis(4) < 0){
+         Robot.arms.setMotor(-0.5);
+      }
   //     if (Robot.oi.getTabletJoystick().getRawAxis(4) == 0){
   //      Robot.arms.setMotor(0);
   //     }
   // }
    //Checks if raise and lower buttons are pressed and raises and lowers if one of the buttons is being pressed
 if (Robot.oi.getLeftJoystick().getRawButton(4)){
-  Robot.arms.setMotor(0.75);
+  Robot.arms.setMotor(0.5);
 }
 else if (Robot.oi.getRightJoystick().getRawButton(5)){
- Robot.arms.setMotor(-0.75);
+ Robot.arms.setMotor(-0.5);
 }
 else{
   Robot.arms.stopMotor();
@@ -47,21 +47,21 @@ else{
   @Override
   protected void execute() {
       //Original code to use right tablet slider to control arm motio
-    // if (Robot.oi.getTabletJoystick().getRawAxis(4) < 0){
-    //       Robot.arms.setMotor(0.85);
-    //    }
-    // else if (Robot.oi.getTabletJoystick().getRawAxis(4) > 0){
-    //      Robot.arms.setMotor(-0.85);
-    //   }
+    if (Robot.oi.getTabletJoystick().getRawAxis(4) < 0){
+          Robot.arms.setMotor(0.5);
+       }
+    else if (Robot.oi.getTabletJoystick().getRawAxis(4) > 0){
+         Robot.arms.setMotor(-0.5);
+      }
     // else if (Robot.oi.getTabletJoystick().getRawAxis(4) == 0){
     //    Robot.arms.setMotor(0);
     //   }
  //Checks if raise and lower buttons are pressed and raises and lowers if one of the buttons is being pressed
     if (Robot.oi.getLeftJoystick().getRawButton(4)){
-        Robot.arms.setMotor(0.85);
+        Robot.arms.setMotor(0.5);
       }
     else if (Robot.oi.getLeftJoystick().getRawButton(3)){
-       Robot.arms.setMotor(-0.85);
+       Robot.arms.setMotor(-0.5);
       }
     else{
         Robot.arms.stopMotor();
