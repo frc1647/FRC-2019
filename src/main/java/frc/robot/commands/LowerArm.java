@@ -19,13 +19,13 @@ public class LowerArm extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.arms.setMotor(-0.5);
+    Robot.arms.setMotor(-0.4);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.arms.setMotor(-0.5);
+    Robot.arms.setMotor(-0.4);
   }
 
   // Make this return true when this Command no longer needs to run execute()

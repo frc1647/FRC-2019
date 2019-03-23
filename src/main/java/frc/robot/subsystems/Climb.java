@@ -30,10 +30,10 @@ public class Climb extends Subsystem {
   public Climb(){
     frontMotor = RobotMap.frontLeg;
     backMotor = RobotMap.backLeg;
-    frontSol1 = RobotMap.frontSol1;
-    frontSol2 = RobotMap.frontSol2;
-    backSol1 = RobotMap.backSol1;
-    backSol2 = RobotMap.backSol2;
+    // frontSol1 = RobotMap.frontSol1;
+    // frontSol2 = RobotMap.frontSol2;
+    // backSol1 = RobotMap.backSol1;
+    // backSol2 = RobotMap.backSol2;
     
   }
   @Override
@@ -41,14 +41,19 @@ public class Climb extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-  public void setFront(double speed){
-frontMotor.set(speed);
+  public void setFront(boolean position){
+//frontMotor.set(speed);
+frontSol1.set(position);
+frontSol2.set(position);
   }
-  public void setBack(double speed){
-backMotor.set(speed);
+  public void setBack(boolean position){
+//backMotor.set(speed);
+backSol1.set(false);
+backSol2.set(false);
   }
   public void stop(){
     backMotor.stopMotor();
     frontMotor.stopMotor();
   }
+
 }
