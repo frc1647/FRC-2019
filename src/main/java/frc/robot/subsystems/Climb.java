@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Solenoid;
@@ -21,15 +22,12 @@ public class Climb extends Subsystem {
   // here. Call these from Commands.
 
   private WPI_VictorSPX frontMotor;
-  private WPI_VictorSPX backMotor;
-  private Solenoid frontSol1;
-  private Solenoid frontSol2;
+  private WPI_TalonSRX wheelMotor;
   private Solenoid backSol1;
   private Solenoid backSol2;
 
   public Climb(){
-    frontMotor = RobotMap.frontLeg;
-    backMotor = RobotMap.backLeg;
+    frontMotor = RobotMap.wheelPivot;
     // frontSol1 = RobotMap.frontSol1;
     // frontSol2 = RobotMap.frontSol2;
     // backSol1 = RobotMap.backSol1;
@@ -41,18 +39,17 @@ public class Climb extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-  public void setFront(boolean position){
-//frontMotor.set(speed);
-frontSol1.set(position);
-frontSol2.set(position);
+  public void setFront(double speed){
+frontMotor.set(speed);
   }
   public void setBack(boolean position){
-//backMotor.set(speed);
 backSol1.set(false);
 backSol2.set(false);
   }
+public void setClimbWheels(double speed){
+wheelMotor.set(speed);
+}
   public void stop(){
-    backMotor.stopMotor();
     frontMotor.stopMotor();
   }
 

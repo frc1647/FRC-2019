@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.ClimbWheels;
 import frc.robot.commands.LiftHigh;
 import frc.robot.commands.LiftInit;
 import frc.robot.commands.LiftLow;
@@ -35,8 +36,8 @@ Joystick rDrive;
 public OI(){
   //Setting the joysticks to what was delcared in the RobotMap
   tab = RobotMap.tablet;
-  lDrive = RobotMap.joystick1;
-  rDrive = RobotMap.joystick2;
+  lDrive = RobotMap.joystick1; //Make sure this is 1 on frc driver station
+  rDrive = RobotMap.joystick2; //Make sure this is 2 on frc driver station
 
   //Buttons on the joystick
       JoystickButton
@@ -49,7 +50,9 @@ public OI(){
         lowerFront = new JoystickButton(tab, 8),
         raiseFront = new JoystickButton(tab, 9),
         raiseBack = new JoystickButton(tab, 10),
-        lowerBack = new JoystickButton(tab, 11);
+        lowerBack = new JoystickButton(tab, 11),
+
+        driveClimbWheels = new JoystickButton(lDrive, 1);
 
   //What happens when certain buttons are pressed
   //Each button relates to a single command
@@ -64,6 +67,8 @@ public OI(){
   raiseBack.whileHeld(new RaiseBack());
   lowerBack.whileHeld(new LowerBack());
 
+  driveClimbWheels.whileHeld(new ClimbWheels());
+
   //closes the buttons (personally idk why this has to be done but it doesn't break anything)
   liftLow.close();
   liftMid.close();
@@ -75,6 +80,7 @@ public OI(){
   raiseFront.close();
   raiseBack.close();
   lowerBack.close();
+  driveClimbWheels.close();
 }
 
 //Gets joysticks so they can be used for controlling speeds in various commands

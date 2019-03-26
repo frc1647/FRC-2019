@@ -52,12 +52,9 @@ public static WPI_VictorSPX armPivot = new WPI_VictorSPX(2);
 public static DigitalInput highLimit = new DigitalInput(0);
 
 //Motor Controllers for climbing
-public static WPI_VictorSPX frontLeg = new WPI_VictorSPX(0);
-public static WPI_VictorSPX backLeg = new WPI_VictorSPX(1);
+public static WPI_VictorSPX wheelPivot = new WPI_VictorSPX(0);
 
 //Declaring Pistons
-// public static Solenoid frontSol1 = new Solenoid(0);
-// public static Solenoid frontSol2 = new Solenoid(1);
 // public static Solenoid backSol1 = new Solenoid(2);
 // public static Solenoid backSol2 = new Solenoid(3);
   // If you are using multipe modules, make sure to define both the port

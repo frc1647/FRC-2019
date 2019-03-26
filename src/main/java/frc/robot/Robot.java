@@ -26,8 +26,6 @@ import frc.robot.subsystems.TankDrive;
  * project.
  */
 
-//This is for a test commit on home pc 
-
 public class Robot extends TimedRobot {
 
   //Creating instances of each subsystem so they can be used throughout the robot project
