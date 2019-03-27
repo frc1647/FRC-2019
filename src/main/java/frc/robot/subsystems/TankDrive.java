@@ -53,10 +53,6 @@ public TankDrive(){
   public void setSpeed(double leftSpeed, double rightSpeed){
     driveTrain.tankDrive(leftSpeed, rightSpeed);
   }
-//Sets the speed when sensors are triggered an uses arcade drive rather than tank drive
-public void arcade(double forwardSpeed, double turnSpeed){
-driveTrain.arcadeDrive(forwardSpeed, turnSpeed);
-}
 //sets drive motors to 0
 public void stopDrive(){
   driveTrain.stopMotor();

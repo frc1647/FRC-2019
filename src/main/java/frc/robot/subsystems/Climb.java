@@ -27,9 +27,7 @@ public class Climb extends Subsystem {
   private Solenoid backSol2;
 
   public Climb(){
-    frontMotor = RobotMap.wheelPivot;
-    // frontSol1 = RobotMap.frontSol1;
-    // frontSol2 = RobotMap.frontSol2;
+    frontMotor = RobotMap.climbPivot;
     // backSol1 = RobotMap.backSol1;
     // backSol2 = RobotMap.backSol2;
     

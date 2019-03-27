@@ -19,9 +19,6 @@ import edu.wpi.first.wpilibj.Solenoid;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-// import io.github.pseudoresonance.pixy2api.Pixy2;
-// import io.github.pseudoresonance.pixy2api.Pixy2.LinkType;
-// import io.github.pseudoresonance.pixy2api.links.SPILink;
 public class RobotMap {
   // For example to map the left and right motors, you could define the
   // following variables to use with your drivetrain subsystem.
@@ -52,7 +49,7 @@ public static WPI_VictorSPX armPivot = new WPI_VictorSPX(2);
 public static DigitalInput highLimit = new DigitalInput(0);
 
 //Motor Controllers for climbing
-public static WPI_VictorSPX wheelPivot = new WPI_VictorSPX(0);
+public static WPI_VictorSPX climbPivot = new WPI_VictorSPX(0);
 
 //Declaring Pistons
 // public static Solenoid backSol1 = new Solenoid(2);

@@ -82,8 +82,7 @@ public class Robot extends TimedRobot {
     climbing.stop();
     lift.stopLift();
     RobotMap.liftMotor.setSelectedSensorPosition(0);
-    tankDrive.setSpeed(0, 0);
-    tankDrive.arcade(0, 0);
+    tankDrive.stopDrive();
     arms.stopMotor();
   }
 
@@ -106,8 +105,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     //Incase the disabledinit() fails this serves as a backup when the match/ auto starts
-    lift.stopLift();
-    arms.stopMotor();
     m_autonomousCommand = m_chooser.getSelected();
     teleopInit();
 

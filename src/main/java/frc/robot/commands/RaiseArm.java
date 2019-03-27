@@ -44,6 +44,6 @@ public class RaiseArm extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.arms.setMotor(0);
+  //  Robot.arms.setMotor(0);
   }
 }
