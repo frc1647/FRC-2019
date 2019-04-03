@@ -22,7 +22,6 @@ public class Climb extends Subsystem {
   // here. Call these from Commands.
 
   private WPI_VictorSPX frontMotor;
-  private WPI_TalonSRX wheelMotor;
   private Solenoid backSol1;
   private Solenoid backSol2;
 
@@ -41,12 +40,9 @@ public class Climb extends Subsystem {
 frontMotor.set(speed);
   }
   public void setBack(boolean position){
-backSol1.set(false);
-backSol2.set(false);
+backSol1.set(position);
+backSol2.set(position);
   }
-public void setClimbWheels(double speed){
-wheelMotor.set(speed);
-}
   public void stop(){
     frontMotor.stopMotor();
   }
