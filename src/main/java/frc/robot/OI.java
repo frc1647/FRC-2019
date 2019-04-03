@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.LiftHigh;
-import frc.robot.commands.LiftInit;
 import frc.robot.commands.LiftLow;
 import frc.robot.commands.LiftMid;
 import frc.robot.commands.LowerArm;
@@ -20,8 +19,6 @@ import frc.robot.commands.LowerFront;
 import frc.robot.commands.RaiseArm;
 import frc.robot.commands.RaiseBack;
 import frc.robot.commands.RaiseFront;
-
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -44,14 +41,12 @@ public OI(){
         liftLow = new JoystickButton(tab, 3),
         liftMid = new JoystickButton(tab, 2),
         liftHigh = new JoystickButton(tab, 1),
-        liftReset = new JoystickButton(tab, 4),
         raiseArm = new JoystickButton(tab, 5),
         lowerArm = new JoystickButton(tab, 6),
         lowerFront = new JoystickButton(tab, 8),
         raiseFront = new JoystickButton(tab, 9),
         raiseBack = new JoystickButton(tab, 10),
         lowerBack = new JoystickButton(tab, 11),
-
         driveStraight = new JoystickButton(rDrive, 2);
 
   //What happens when certain buttons are pressed
@@ -59,7 +54,6 @@ public OI(){
   liftLow.whenPressed(new LiftLow());
   liftMid.whenPressed(new LiftMid());
   liftHigh.whenPressed(new LiftHigh());
-  liftReset.whenPressed(new LiftInit());
   raiseArm.whileHeld(new RaiseArm());
   lowerArm.whileHeld(new LowerArm());
   lowerFront.whileHeld(new LowerFront());
@@ -72,7 +66,6 @@ public OI(){
   liftLow.close();
   liftMid.close();
   liftHigh.close();
-  liftReset.close();
   raiseArm.close();
   lowerArm.close();
   lowerFront.close();

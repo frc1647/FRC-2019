@@ -48,7 +48,6 @@ else if (Robot.oi.getRightJoystick().getRawButton(2)){
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.lift.setToggle();
    if (Robot.oi.getTabletJoystick().getRawAxis(3) > 0){
     Robot.lift.setLift(1.0);
  }
