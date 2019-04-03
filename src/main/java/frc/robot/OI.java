@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ClimbWheels;
+import frc.robot.commands.DriveStraight;
 import frc.robot.commands.LiftHigh;
 import frc.robot.commands.LiftInit;
 import frc.robot.commands.LiftLow;
@@ -52,7 +53,12 @@ public OI(){
         raiseBack = new JoystickButton(tab, 10),
         lowerBack = new JoystickButton(tab, 11),
 
-        driveClimbWheels = new JoystickButton(lDrive, 1);
+        driveClimbWheels = new JoystickButton(lDrive, 1),
+
+        driveStraight = new JoystickButton(rDrive, 2);
+
+  driveStraight.whileHeld(new DriveStraight());
+
 
   //What happens when certain buttons are pressed
   //Each button relates to a single command
@@ -81,6 +87,7 @@ public OI(){
   raiseBack.close();
   lowerBack.close();
   driveClimbWheels.close();
+  driveStraight.close();
 }
 
 //Gets joysticks so they can be used for controlling speeds in various commands
