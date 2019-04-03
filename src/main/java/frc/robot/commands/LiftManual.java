@@ -60,10 +60,10 @@ else if (Robot.oi.getTabletJoystick().getRawAxis(3) == 0){
 }
 
 if (Robot.oi.getRightJoystick().getRawButton(3)){
-  Robot.lift.setLift(-0.75);
+  Robot.lift.setLift(-1.0);
 }
 else if (Robot.oi.getRightJoystick().getRawButton(2)){
- Robot.lift.setLift(0.75);
+ Robot.lift.setLift(1.0);
 }
 }
 //Robot.lift.setSetpoint(RobotMap.liftMotor1.getSelectedSensorPosition(0));
