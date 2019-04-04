@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ClimbWheels;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.LiftHigh;
-import frc.robot.commands.LiftInit;
 import frc.robot.commands.LiftLow;
 import frc.robot.commands.LiftMid;
 import frc.robot.commands.LowerArm;
@@ -65,7 +64,6 @@ public OI(){
   liftLow.whenPressed(new LiftLow());
   liftMid.whenPressed(new LiftMid());
   liftHigh.whenPressed(new LiftHigh());
-  liftReset.whenPressed(new LiftInit());
   raiseArm.whileHeld(new RaiseArm());
   lowerArm.whileHeld(new LowerArm());
   lowerFront.whileHeld(new LowerFront());

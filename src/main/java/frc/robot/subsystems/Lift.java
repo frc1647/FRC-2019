@@ -27,9 +27,11 @@ public class Lift extends Subsystem {
   public WPI_TalonSRX motorOne;
   //boolean for set positions of either the cargo or hatcher
   private boolean toggle;
+  private double goalHeight;
   
 public Lift(){
-  //Uses variables from RobotMap 
+  //Uses variables from RobotMap
+  goalHeight= 0; 
   motorOne = RobotMap.liftMotor;
   toggle = false;
   motorOne.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
@@ -58,16 +60,22 @@ public Lift(){
   return motorOne.get();
  }
 
-//Sets the toggle/ initial position of the set lift targets based on the togglable button value
- public void setToggle(){
-  toggle = Robot.oi.getTabletJoystick().getRawButton(8);
+public void setPosiiton(double desiredHeight){
+goalHeight = desiredHeight;
+if (desiredHeight - getCount() < 0){
+  setLift(-0.5);
 }
-
-//returns if the toggle is true or false
-  public boolean getToggle(){
-return toggle;
-  }
-
+else {
+  setLift(0.5);
+}
+delta();
+}
+public boolean delta(){
+return false;
+}
+public double getCount(){
+  return motorOne.getSelectedSensorPosition(0);
+}
 //Returns the value of the offet/ initial value as determinded by the toggle boolean variable
 public double getOffset(){
 if (toggle == true){
@@ -80,7 +88,6 @@ return -7790;
 
 //Sends various data about the lift to the SmartDashboard
 public void log(){
-  SmartDashboard.putBoolean("Toggle Boolean: ", getToggle());
   //SmartDashboard.putBoolean("Toggle Boolean: ", Robot.oi.getTabletJoystick().getRawButton(8));
   SmartDashboard.putNumber("Offset", getOffset());
   SmartDashboard.putNumber("Talon Encoder Count: ", motorOne.getSelectedSensorPosition());
