@@ -14,14 +14,8 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class LiftLow extends Command {
-  private double desiredHeight;
-  private double currentHeight;
-  private double tolerance;
-  private double offset;
-  private WPI_TalonSRX liftMotor;
   
   public LiftLow() {
-    liftMotor = RobotMap.liftMotor;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -34,7 +28,7 @@ public class LiftLow extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  Robot.lift.setPosiiton(-7790);
+Robot.lift.setPosition(-7790);
   }
   // Make this return true when this Command no longer needs to run execute()
   @Override

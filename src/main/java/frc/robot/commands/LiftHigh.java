@@ -14,14 +14,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class LiftHigh extends Command {
-  private double desiredHeight;
-  private double currentHeight;
-  private double tolerance;
-  private double offset;
-  private WPI_TalonSRX liftMotor;
-
   public LiftHigh() {
-    liftMotor = RobotMap.liftMotor;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -29,33 +22,18 @@ public class LiftHigh extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    currentHeight = liftMotor.getSelectedSensorPosition(0);
-    tolerance = 26578.0;
 
-    if (Robot.oi.getTabletJoystick().getRawButton(8)){
-offset = 372048;
-    }
-    else{
-offset = 252543.0;
-    }
-    desiredHeight = 744096.0 + offset;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (desiredHeight - currentHeight < 0){
-      Robot.lift.setLift(-0.5);
-    }
-    else{
-      Robot.lift.setLift(0.5);
-    }
-
+Robot.lift.setPosition(-27000);
   }
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Math.abs(currentHeight - desiredHeight) < tolerance;
+    return Robot.lift.delta();
   }
 
   // Called once after isFinished returns true

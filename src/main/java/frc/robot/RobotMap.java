@@ -54,7 +54,9 @@ public static DigitalInput highLimit = new DigitalInput(0);
 //Motor Controllers for climbing
 public static WPI_VictorSPX climbPivot = new WPI_VictorSPX(0);
 
+//Declaring Navx that will be used for a gyro
 public static AHRS navx = new AHRS(SPI.Port.kMXP);
+
 //Declaring Pistons
 // public static Solenoid backSol1 = new Solenoid(2);
 // public static Solenoid backSol2 = new Solenoid(3);
