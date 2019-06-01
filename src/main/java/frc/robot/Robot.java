@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -29,14 +30,22 @@ import frc.robot.subsystems.TankDrive;
 public class Robot extends TimedRobot {
 
   //Creating instances of each subsystem so they can be used throughout the robot project
-  public static Lift lift = new Lift();
+  public static Lift lift;
   public static OI oi;
-  public static Arms arms = new Arms();
-  public static TankDrive  tankDrive = new TankDrive();
-  public static Climb climbing = new Climb();
+  public static Arms arms; 
+  public static TankDrive  tankDrive ;
+  public static Compressor air;
+  public static Climb climbing;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+  public Robot(){
+   air = new Compressor();
+   tankDrive = new TankDrive();
+   climbing = new Climb();
+   arms = new Arms();
+   lift = new Lift();
+  }
   /**
    * 
    * This function is run when the robot is first started up and should be

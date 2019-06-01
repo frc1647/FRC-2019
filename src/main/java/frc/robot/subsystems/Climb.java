@@ -21,14 +21,16 @@ public class Climb extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private WPI_VictorSPX frontMotor;
+  private WPI_TalonSRX frontMotor;
+  private WPI_VictorSPX climbWheel;
   private Solenoid backSol1;
   private Solenoid backSol2;
 
   public Climb(){
     frontMotor = RobotMap.climbPivot;
-    // backSol1 = RobotMap.backSol1;
-    // backSol2 = RobotMap.backSol2;
+    climbWheel = RobotMap.climbWheel;
+    backSol1 = RobotMap.backSol1;
+    backSol2 = RobotMap.backSol2;
     
   }
   @Override
@@ -38,13 +40,18 @@ public class Climb extends Subsystem {
   }
   public void setFront(double speed){
 frontMotor.set(speed);
+//climbWheel.set(speed);
   }
   public void setBack(boolean position){
 backSol1.set(position);
 backSol2.set(position);
   }
+  public void setWheel(double speed){
+climbWheel.set(speed);
+  }
   public void stop(){
     frontMotor.stopMotor();
+    climbWheel.stopMotor();
   }
 
 }

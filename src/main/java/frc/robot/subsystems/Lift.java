@@ -32,7 +32,7 @@ public class Lift extends Subsystem {
 
 public Lift(){
   //Uses variables from RobotMap
-  tolerance = 200;
+  tolerance = 250;
   goalHeight= 0; 
   motorOne = RobotMap.liftMotor;
   motorOne.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
@@ -50,10 +50,10 @@ public Lift(){
 public void setPosition(double desiredHeight){
   goalHeight = desiredHeight;
   if (desiredHeight - getCount() < 0){
-    setLift(-0.5);
+    setLift(-1);
   }
   else{
-    setLift(0.5);
+    setLift(1);
   }
 delta();
 }

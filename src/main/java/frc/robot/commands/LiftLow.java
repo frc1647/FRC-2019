@@ -28,7 +28,7 @@ public class LiftLow extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-Robot.lift.setPosition(-7790);
+Robot.lift.setPosition(-6200);
   }
   // Make this return true when this Command no longer needs to run execute()
   @Override

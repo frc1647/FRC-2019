@@ -8,6 +8,7 @@
 package frc.robot;
 
 
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
@@ -52,14 +53,15 @@ public static WPI_VictorSPX armPivot = new WPI_VictorSPX(2);
 public static DigitalInput highLimit = new DigitalInput(0);
 
 //Motor Controllers for climbing
-public static WPI_VictorSPX climbPivot = new WPI_VictorSPX(0);
-
+public static WPI_TalonSRX climbPivot = new WPI_TalonSRX(10);
+public static WPI_VictorSPX climbWheel = new WPI_VictorSPX(3);
+                                                                                                                                                 
 //Declaring Navx that will be used for a gyro
 public static AHRS navx = new AHRS(SPI.Port.kMXP);
 
 //Declaring Pistons
-// public static Solenoid backSol1 = new Solenoid(2);
-// public static Solenoid backSol2 = new Solenoid(3);
+public static Solenoid backSol1 = new Solenoid(0);
+public static Solenoid backSol2 = new Solenoid(1);
   // If you are using multipe modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;

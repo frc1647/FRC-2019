@@ -24,7 +24,7 @@ public class LowerFront extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climbing.setFront(-0.5);
+    Robot.climbing.setFront(1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -43,6 +43,6 @@ public class LowerFront extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-   // Robot.climbing.setFront(0);
+   Robot.climbing.setFront(0);
   }
 }

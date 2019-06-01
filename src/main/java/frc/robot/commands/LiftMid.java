@@ -29,7 +29,7 @@ public class LiftMid extends Command {
   @Override
   protected void execute() {
     //Checks if the lift is above or below desired height and sets speed accordingly
-    Robot.lift.setPosition(-18000);
+    Robot.lift.setPosition(-14000);
   }
   // Make this return true when this Command no longer needs to run execute()
   @Override

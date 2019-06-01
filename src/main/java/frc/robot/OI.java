@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.ClimbWheel;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.LiftHigh;
 import frc.robot.commands.LiftLow;
@@ -19,6 +20,7 @@ import frc.robot.commands.LowerFront;
 import frc.robot.commands.RaiseArm;
 import frc.robot.commands.RaiseBack;
 import frc.robot.commands.RaiseFront;
+import frc.robot.commands.test;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -43,11 +45,15 @@ public OI(){
         liftHigh = new JoystickButton(tab, 1),
         raiseArm = new JoystickButton(tab, 5),
         lowerArm = new JoystickButton(tab, 6),
-        lowerFront = new JoystickButton(tab, 8),
-        raiseFront = new JoystickButton(tab, 9),
-        raiseBack = new JoystickButton(tab, 10),
-        lowerBack = new JoystickButton(tab, 11),
-        driveStraight = new JoystickButton(rDrive, 2);
+        lowerFront = new JoystickButton(tab, 7),
+        raiseFront = new JoystickButton(tab, 8),
+        raiseBack = new JoystickButton(tab, 9),
+        lowerBack = new JoystickButton(tab, 10),
+
+        climbWheel = new JoystickButton(lDrive, 1),
+        test = new JoystickButton(rDrive, 1),
+
+        driveStraight = new JoystickButton(lDrive, 2);
 
   //What happens when certain buttons are pressed
   //Each button relates to a single command
@@ -62,8 +68,12 @@ public OI(){
   lowerBack.whileHeld(new LowerBack());
   driveStraight.whileHeld(new DriveStraight());
 
+  test.whileHeld(new test());
+  climbWheel.whileHeld(new ClimbWheel());
+
   //closes the buttons (personally idk why this has to be done but it doesn't break anything)
   liftLow.close();
+  climbWheel.close();
   liftMid.close();
   liftHigh.close();
   raiseArm.close();

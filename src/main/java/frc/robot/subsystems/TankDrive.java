@@ -49,6 +49,7 @@ public TankDrive(){
   rightDrive1 = RobotMap.rightMotor1;
   rightDrive2 = RobotMap.rightMotor2;
 
+  gyro = RobotMap.navx;
 
   //sets the speed groups based on left or right side of the robot
   leftSide = new SpeedControllerGroup(leftDrive1, leftDrive2);  
